@@ -15,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView foodRecycler;
     RecyclerView bannerRecycler;
     RecyclerView saleRecycler;
+    RecyclerView bsRecycler;
     FoodAdapter foodAdapter;
     BannerAdapter bannerAdapter;
     SaleAdapter saleAdapter;
+    BSAdapter bsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
         sales.add(new sale("ĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
         setSaleRecycler(sales);
 
+        List<bestseller> bestsellers = new ArrayList<>();
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beef1,"đ100 000"));
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        setBsRecycler(bestsellers);
+
     }
 
     private void setFoodRecycler(List<Food_sp> food_spList)
@@ -80,5 +89,14 @@ public class MainActivity extends AppCompatActivity {
         saleRecycler.setLayoutManager(layoutManager);
         saleAdapter = new SaleAdapter(this, saleList);
         saleRecycler.setAdapter(saleAdapter);
+    }
+
+    private void setBsRecycler(List<bestseller> bestsellerList)
+    {
+        bsRecycler = findViewById(R.id.bs_recycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        bsRecycler.setLayoutManager(layoutManager);
+        bsAdapter = new BSAdapter(this, bestsellerList);
+        bsRecycler.setAdapter(bsAdapter);
     }
 }
