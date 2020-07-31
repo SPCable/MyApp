@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="taiducfood">Taiducfood</string>
+    <string name="t_m_ki_m_t_i_y">Tìm kiếm tại đây!</string>
+    <string name="todo">TODO</string>
+    <string name="s_n_ph_m">Sản Phẩm</string>
+    <string name="th_t_b_m_canada_nga">Thịt bò Mỹ-Canada-Nga</string>
+</resources>
