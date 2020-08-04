@@ -70,7 +70,6 @@
     <include
         android:id="@+id/include"
         layout="@layout/content_scrolling"
-        app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
