@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         banners.add(new banner(R.drawable.beef1));
         banners.add(new banner(R.drawable.beef1));
         banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
         setBannerRecycler(banners);
 
         List<sale> sales = new ArrayList<>();
@@ -60,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+
         setBsRecycler(bestsellers);
 
     }
