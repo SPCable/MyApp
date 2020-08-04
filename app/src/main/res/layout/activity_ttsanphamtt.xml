@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contextClickable="false">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <FrameLayout
+                android:id="@+id/frmInfoBigPic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/beef1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardName"
+                android:layout_width="0dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="170dp"
+                android:layout_marginEnd="24dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:fadeScrollbars="true"
+                android:fadingEdge="vertical"
+                android:filterTouchesWhenObscured="false"
+                android:nestedScrollingEnabled="true"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:touchscreenBlocksFocus="false"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="15dp"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="@+id/frmInfoBigPic"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtListInfoProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Thịt bò Mỹ-Canada-Nga"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textIsSelectable="false"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardKhuyenMai"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="160dp"
+                android:background="#FFFFFF"
+                android:nestedScrollingEnabled="true"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:translationZ="20dp"
+                app:cardBackgroundColor="#FF5722"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtKhuyenMai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Khuyến mãi"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textIsSelectable="false"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSanpham"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="#DDDDDD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardName">
+
+                <TextView
+                    android:id="@+id/txtSanpham"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Sản Phẩm"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutDSSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/cardName"
+                app:layout_constraintStart_toStartOf="@+id/cardName"
+                app:layout_constraintTop_toBottomOf="@+id/cardSanpham">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDSSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/frmBackSearch"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/nestedScrollView"
+        app:layout_constraintStart_toStartOf="@+id/nestedScrollView"
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView">
+
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="15dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/search_vector" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="15dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/abc_vector_test" />
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

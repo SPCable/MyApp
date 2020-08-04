@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 
+
+import com.example.myapp.TTSP.ttsanphamtt;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoodListener {
 
     RecyclerView foodRecycler;
     RecyclerView bannerRecycler;
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         banners.add(new banner(R.drawable.beef1));
         banners.add(new banner(R.drawable.beef1));
         banners.add(new banner(R.drawable.beef1));
+        banners.add(new banner(R.drawable.beef1));
+        banners.add(new banner(R.drawable.beef1));
         setBannerRecycler(banners);
 
         List<sale> sales = new ArrayList<>();
@@ -58,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
         bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-
         setBsRecycler(bestsellers);
 
     }
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         foodRecycler = findViewById(R.id.food_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
         foodRecycler.setLayoutManager(layoutManager);
-        foodAdapter = new FoodAdapter(this,food_spList);
+        foodAdapter = new FoodAdapter(this, food_spList, this);
         foodRecycler.setAdapter(foodAdapter);
     }
 
@@ -99,5 +102,13 @@ public class MainActivity extends AppCompatActivity {
         bsRecycler.setLayoutManager(layoutManager);
         bsAdapter = new BSAdapter(this, bestsellerList);
         bsRecycler.setAdapter(bsAdapter);
+    }
+
+    @Override
+    public void onFoodLClick(int position) {
+        if(position == 0) {
+            Intent intent = new Intent(this, ttsanphamtt.class);
+            startActivity(intent);
+        }
     }
 }
