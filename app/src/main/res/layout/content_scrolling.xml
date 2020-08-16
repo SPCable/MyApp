@@ -41,9 +41,11 @@
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#EFEFEF"
             android:fontFamily="@font/roboto_bold"
             android:padding="8dp"
             android:text="Tạm tính"
+            android:textColor="#99000000"
             android:textSize="18sp" />
 
         <TextView
@@ -60,9 +62,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="110dp"
+            android:layout_gravity="right"
+            android:translationX="-11dp"
             app:srcCompat="@drawable/line" />
 
         <TextView
@@ -102,8 +105,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:paddingTop="8dp"
                     android:text="10"
                     android:textColor="#C70039"
                     android:textSize="24sp"
@@ -125,25 +126,25 @@
 
                 <Button
                     android:id="@+id/button3"
-                    android:layout_width="350dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/add_db"
+                    android:drawableStart="@drawable/ic_baseline_add_shopping_cart_24"
                     android:fadeScrollbars="true"
                     android:fontFamily="@font/roboto_bold"
                     android:isScrollContainer="true"
                     android:nestedScrollingEnabled="false"
                     android:padding="16dp"
                     android:text="Thêm vào giỏ hàng"
+                    android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.491"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-                    app:layout_constraintVertical_bias="0.25" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

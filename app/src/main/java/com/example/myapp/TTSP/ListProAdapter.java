@@ -1,7 +1,6 @@
 package com.example.myapp.TTSP;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
-import com.example.myapp.Search.pro_search;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.LPAdapterViewHolder> {
 
@@ -86,7 +83,7 @@ public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.LPAdapte
         public LPAdapterViewHolder(@NonNull View itemView, OnLPAListener onLPAListener) {
             super(itemView);
 
-            imageViewInfoProduct=itemView.findViewById(R.id.imageViewInfoProduct);
+            imageViewInfoProduct=itemView.findViewById(R.id.imgSearch);
             txtProduct=itemView.findViewById(R.id.txtProduct);
             txtBrand=itemView.findViewById(R.id.txtBrand);
             txtPriceProduct=itemView.findViewById(R.id.txtPriceProduct);

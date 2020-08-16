@@ -56,7 +56,6 @@
                 app:cardElevation="15dp"
                 app:cardUseCompatPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="@+id/frmInfoBigPic"
                 app:layout_constraintTop_toTopOf="parent">
 
