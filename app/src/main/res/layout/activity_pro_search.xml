@@ -17,10 +17,10 @@
         android:background="#C70039"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:ems="10"
-        android:hint=" ... Tìm kiếm sản phẩm"
+        android:hint="... Tìm kiếm sản phẩm"
         android:inputType="textPersonName"
         android:padding="16dp"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="#59E1E1E1"
         android:textColorHint="#D0FFFFFF" />
 

@@ -5,8 +5,7 @@
     android:id="@+id/paymentlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DADADA"
-    tools:context=".MainActivity">
+    android:background="#F1F1F1">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
@@ -110,7 +109,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="8dp"
                 android:background="#FFFF">
 

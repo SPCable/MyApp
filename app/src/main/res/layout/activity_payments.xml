@@ -51,14 +51,14 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView389"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
-        tools:srcCompat="@drawable/stripe_payment_and_subscription_verification" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
 
     <TextView
         android:id="@+id/textView12"
@@ -71,7 +71,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView389" />
 
     <TextView
         android:id="@+id/textView14"

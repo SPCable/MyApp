@@ -25,7 +25,11 @@
 
         </activity>
         <activity android:name=".Account.TaiKhoan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".StartApp.LaunchApp">
 
@@ -34,11 +38,7 @@
 
         </activity>
         <activity android:name=".TTSP.ttsanphamtt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
 
