@@ -5,101 +5,67 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.myapp.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.LPAdapterViewHolder> {
 
-    private ArrayList<String> mimageViewInfoProduct = new ArrayList<>();
-    private ArrayList<String> mtxtProduct = new ArrayList<>();
-    private ArrayList<String> mtxtBrand = new ArrayList<>();
-    private ArrayList<String> mtxtPriceProduct = new ArrayList<>();
-    private Context mContext;
+public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.ListProductViewHolder> {
 
-    private OnLPAListener mOnLPAListener;
+    Context context;
+    List<ListProduct> listProductList;
 
-    public ListProAdapter(Context mContext, ArrayList<String> mimageViewInfoProduct, ArrayList<String> mtxtProduct, ArrayList<String> mtxtBrand, ArrayList<String> mtxtPriceProduct, OnLPAListener onLPAListener) {
-        this.mimageViewInfoProduct = mimageViewInfoProduct;
-        this.mtxtProduct = mtxtProduct;
-        this.mtxtBrand = mtxtBrand;
-        this.mtxtPriceProduct = mtxtPriceProduct;
-        this.mContext = mContext;
-        this.mOnLPAListener = onLPAListener;
+    public ListProAdapter(Context context, List<ListProduct> listProductList) {
+        this.context = context;
+        this.listProductList = listProductList;
     }
 
     @NonNull
     @Override
-    public LPAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dssp_layout, parent, false);
-        LPAdapterViewHolder holder = new LPAdapterViewHolder(view, mOnLPAListener);
-        return holder;
+    public ListProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.list_product_item, parent, false);
+
+        return new ListProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LPAdapterViewHolder holder, int position) {
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mimageViewInfoProduct.get(position))
-                .into(holder.imageViewInfoProduct);
+    public void onBindViewHolder(@NonNull ListProductViewHolder holder, int position) {
 
-        holder.txtProduct.setText(mtxtProduct.get(position));
-        holder.txtBrand.setText(mtxtBrand.get(position));
-        holder.txtPriceProduct.setText(mtxtPriceProduct.get(position));
+        holder.productImage.setImageResource(listProductList.get(position).getImage());
+        holder.name.setText(listProductList.get(position).getName());
+        holder.brand.setText(listProductList.get(position).getBrand());
+        holder.price.setText(listProductList.get(position).getPrice());
 
-
-
-//        holder.ReLayProductInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Intent intent = Intent()
-//            }
-//        });
 
     }
 
     @Override
     public int getItemCount() {
-        return mimageViewInfoProduct.size();
+        return listProductList.size();
     }
 
-    public class LPAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static final class ListProductViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imageViewInfoProduct;
-        TextView txtProduct;
-        TextView txtBrand;
-        TextView txtPriceProduct;
-        RelativeLayout ReLayProductInfo;
+        ImageView productImage;
+        TextView name, price, brand;
 
-        OnLPAListener onLPAListener;
-
-        public LPAdapterViewHolder(@NonNull View itemView, OnLPAListener onLPAListener) {
+        public ListProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageViewInfoProduct=itemView.findViewById(R.id.imgSearch);
-            txtProduct=itemView.findViewById(R.id.txtProduct);
-            txtBrand=itemView.findViewById(R.id.txtBrand);
-            txtPriceProduct=itemView.findViewById(R.id.txtPriceProduct);
-            ReLayProductInfo=itemView.findViewById(R.id.ReLayProductInfo);
+            productImage = itemView.findViewById(R.id.product_img);
+            name = itemView.findViewById(R.id.product_name);
+            brand = itemView.findViewById(R.id.product_brand);
+            price = itemView.findViewById(R.id.product_price);
 
-            this.onLPAListener = onLPAListener;
 
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            onLPAListener.onLPAClick(getAdapterPosition());
         }
     }
-    public interface OnLPAListener{
-        void onLPAClick(int position);
-    }
+
+
 }

@@ -10,129 +10,49 @@ import android.util.Log;
 
 import com.example.myapp.MainActivity;
 import com.example.myapp.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ttsanphamtt extends AppCompatActivity implements ListProAdapter.OnLPAListener {
+public class ttsanphamtt extends AppCompatActivity {
 
-    private ArrayList<String> mName = new ArrayList<>();
-    private ArrayList<String> mBrand = new ArrayList<>();
-    private ArrayList<String> mPrice = new ArrayList<>();
-    private ArrayList<String> mImage = new ArrayList<>();
+    RecyclerView rv_DSSP;
+    ListProAdapter listProAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ttsanphamtt);
 
-        initImageBitmaps();
-    }
+        List<ListProduct> listProductList = new ArrayList<>();
 
-    private void initImageBitmaps(){
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
+        listProductList.add(new ListProduct("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)","Hiệu : Excel, National,Harris…","200,000,000₫",R.drawable.slice_beef));
 
+        setListProRecycler(listProductList);
 
-
-        mName.add("aBA CHỈ BÒ-BEEF PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        mName.add("BA CHỈ BÒ-BEEF SHORT PLADE (XX:USA)");
-        mBrand.add("Hiệu : Excel, National,Harris…");
-        mPrice.add("₫200,000.00");
-        mImage.add("https://i.imgur.com/ECQbFw8.png");
-
-        initListProduct();
-    }
-
-    private void initListProduct(){
-        RecyclerView recyclerView = findViewById(R.id.rvDSSP);
-        ListProAdapter adapter = new ListProAdapter(this, mImage, mName, mBrand, mPrice, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    public void onLPAClick(int position) {
-        if(position==0) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
 
     }
+
+
+    private void setListProRecycler(List<ListProduct> listProductList){
+
+        rv_DSSP = findViewById(R.id.rvDSSP);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        rv_DSSP.setLayoutManager(layoutManager);
+        listProAdapter = new ListProAdapter(this, listProductList);
+        rv_DSSP.setAdapter(listProAdapter);
+
+    }
+
+
 }

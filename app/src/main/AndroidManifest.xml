@@ -18,33 +18,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Order.DatHang">
+        <activity android:name=".History.BuyHistory"></activity>
+        <activity android:name=".Order.DatHang"></activity>
+        <activity android:name=".Account.Payments"></activity>
+        <activity android:name=".Account.TaiKhoan"></activity>
+        <activity android:name=".StartApp.LaunchApp"></activity>
+        <activity android:name=".Buy_Activity"></activity>
+        <activity android:name=".TTSP.ttsanphamtt">
 
         </activity>
-        <activity android:name=".Account.Payments">
-
-        </activity>
-        <activity android:name=".Account.TaiKhoan">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Search.pro_search">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".StartApp.LaunchApp">
-
-        </activity>
-        <activity android:name=".Buy_Activity">
-
-        </activity>
-        <activity android:name=".TTSP.ttsanphamtt">
-
-        </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".Search.pro_search">
-
         </activity>
 
         <meta-data
