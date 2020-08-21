@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/mainActivity">
+    <fragment
+        android:id="@+id/mainActivity"
+        android:name="com.example.myapp.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <action
+            android:id="@+id/action_mainActivity_to_pro_search"
+            app:destination="@id/pro_search" />
+        <action
+            android:id="@+id/action_mainActivity_to_datHang"
+            app:destination="@id/datHang"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainActivity_to_taiKhoan2"
+            app:destination="@id/taiKhoan2" />
+        <action
+            android:id="@+id/action_mainActivity_to_ttsanphamtt"
+            app:destination="@id/ttsanphamtt" />
+        <action
+            android:id="@+id/action_mainActivity_to_buy_Activity"
+            app:destination="@id/buy_Activity" />
+    </fragment>
+    <fragment
+        android:id="@+id/buy_Activity"
+        android:name="com.example.myapp.Buy_Activity"
+        android:label="activity_buy_"
+        tools:layout="@layout/activity_buy_" />
+    <fragment
+        android:id="@+id/buyHistory"
+        android:name="com.example.myapp.History.BuyHistory"
+        android:label="activity_buy_history"
+        tools:layout="@layout/activity_buy_history" />
+    <fragment
+        android:id="@+id/ttsanphamtt"
+        android:name="com.example.myapp.TTSP.ttsanphamtt"
+        android:label="activity_ttsanphamtt"
+        tools:layout="@layout/activity_ttsanphamtt" >
+        <action
+            android:id="@+id/action_ttsanphamtt_to_buy_Activity"
+            app:destination="@id/buy_Activity" />
+    </fragment>
+    <fragment
+        android:id="@+id/datHang"
+        android:name="com.example.myapp.Order.DatHang"
+        android:label="activity_dat_hang"
+        tools:layout="@layout/activity_dat_hang" />
+    <fragment
+        android:id="@+id/pro_search"
+        android:name="com.example.myapp.Search.pro_search"
+        android:label="activity_pro_search"
+        tools:layout="@layout/activity_pro_search" />
+    <fragment
+        android:id="@+id/payments"
+        android:name="com.example.myapp.Account.Payments"
+        android:label="activity_payments"
+        tools:layout="@layout/activity_payments" />
+    <fragment
+        android:id="@+id/taiKhoan2"
+        android:name="com.example.myapp.Account.TaiKhoan"
+        android:label="activity_tai_khoan"
+        tools:layout="@layout/activity_tai_khoan" >
+        <action
+            android:id="@+id/action_taiKhoan2_to_buyHistory"
+            app:destination="@id/buyHistory" />
+        <action
+            android:id="@+id/action_taiKhoan2_to_payments"
+            app:destination="@id/payments" />
+    </fragment>
+</navigation>

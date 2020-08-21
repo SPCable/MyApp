@@ -14,10 +14,10 @@ import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
+    OnFoodListener mOnFoodListener;
+
     Context context;
     List<Food_sp> food_spList;
-
-    private OnFoodListener mOnFoodListener;
 
     public FoodAdapter(Context context, List<Food_sp> food_spList, OnFoodListener onFoodListener) {
         this.context = context;
@@ -47,7 +47,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public  static final class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView foodImg;
         TextView foodName;
-
         OnFoodListener onFoodListener;
 
         public FoodViewHolder(@NonNull View itemView, OnFoodListener onFoodListener) {
@@ -55,17 +54,19 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
             foodImg = itemView.findViewById(R.id.food_img);
             foodName = itemView.findViewById(R.id.food_name);
-            this.onFoodListener = onFoodListener;
 
+
+            this.onFoodListener = onFoodListener;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onFoodListener.onFoodLClick(getAdapterPosition());
+            onFoodListener.onFoodClick(getAdapterPosition());
         }
     }
+
     public interface OnFoodListener{
-        void onFoodLClick(int position);
+        void onFoodClick(int position);
     }
 }

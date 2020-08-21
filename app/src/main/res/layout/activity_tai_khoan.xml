@@ -5,7 +5,8 @@
     android:id="@+id/menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1">
+    android:background="#F1F1F1"
+    tools:context=".Account.TaiKhoan">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4123"
@@ -22,13 +23,13 @@
             android:translationX="-16dp">
 
             <Button
-                android:id="@+id/button5435"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/abc_vector_test"
+                android:onClick="btnBack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -62,6 +63,7 @@
 
 
         android:fontFamily="@font/roboto"
+        android:onClick="btnLichSuMua"
         android:padding="16dp"
         android:text="Lịch sử mua"
         android:textAlignment="textStart"
@@ -78,6 +80,7 @@
         android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
         android:fontFamily="@font/roboto"
+        android:onClick="btnQuanLyThanhToan"
         android:padding="16dp"
         android:text="Quản lý thanh toán"
         android:textAlignment="textStart"

@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <TextView
         android:id="@+id/logo"
@@ -24,13 +25,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/imageView2"
+        android:id="@+id/btnMenu_main"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/menu"
         android:contentDescription="@string/todo"
+        android:onClick="btnMenu"
         app:layout_constraintBottom_toBottomOf="@+id/edit_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edit_search"
@@ -52,20 +54,22 @@
         android:inputType="textPersonName"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/btnMenu_main"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <Button
-        android:id="@+id/imageView4"
+        android:id="@+id/btnOrder_main"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/giohang"
         android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        android:onClick="orderBtn_main"
+        app:layout_constraintBottom_toTopOf="@+id/btnMenu_main"
+
         app:layout_constraintEnd_toEndOf="parent" />
 
 
@@ -187,5 +191,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragment"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/btnOrder_main"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnOrder_main"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnOrder_main"-->
+<!--        app:navGraph="@navigation/app_nav" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

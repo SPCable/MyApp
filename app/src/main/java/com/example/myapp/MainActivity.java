@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.myapp.Account.TaiKhoan;
+import com.example.myapp.Order.DatHang;
 import com.example.myapp.TTSP.ttsanphamtt;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoodListener {
 
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     BSAdapter bsAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -51,23 +57,24 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         setBannerRecycler(banners);
 
         List<sale> sales = new ArrayList<>();
-        sales.add(new sale("aĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
-        sales.add(new sale("bĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
-        sales.add(new sale("cĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
-        sales.add(new sale("dĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
-        sales.add(new sale("eĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
-        sales.add(new sale("fĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00","₫250,000.00",R.drawable.mini_beef));
+        sales.add(new sale("aĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
+        sales.add(new sale("bĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
+        sales.add(new sale("cĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
+        sales.add(new sale("dĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
+        sales.add(new sale("eĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
+        sales.add(new sale("fĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
         setSaleRecycler(sales);
 
         List<bestseller> bestsellers = new ArrayList<>();
-        bestsellers.add(new bestseller("aThịt bò Mỹ-Canada-Nga", R.drawable.beef1,"đ100 000"));
-        bestsellers.add(new bestseller("bThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("cThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("dThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("eThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("fThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
-        bestsellers.add(new bestseller("gThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak,"đ100 000"));
+        bestsellers.add(new bestseller("aThịt bò Mỹ-Canada-Nga", R.drawable.beef1, "đ100 000"));
+        bestsellers.add(new bestseller("bThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
+        bestsellers.add(new bestseller("cThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
+        bestsellers.add(new bestseller("dThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
+        bestsellers.add(new bestseller("eThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
+        bestsellers.add(new bestseller("fThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
+        bestsellers.add(new bestseller("gThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
         setBsRecycler(bestsellers);
+
 
     }
 
@@ -107,11 +114,32 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         bsRecycler.setAdapter(bsAdapter);
     }
 
+
+
+    //////////////////////Click Event////////////////////////////////
+
+    public void orderBtn_main(View view) {
+        if(view == findViewById(R.id.btnOrder_main)){
+            startActivity(new Intent(this, DatHang.class));
+            Animatoo.animateSlideLeft(this);
+        }
+    }
+
+    public void btnMenu(View view) {
+        if(view == findViewById(R.id.btnMenu_main)){
+            startActivity(new Intent(this, TaiKhoan.class));
+            Animatoo.animateSlideLeft(this);
+        }
+    }
+
     @Override
-    public void onFoodLClick(int position) {
+    public void onFoodClick(int position) {
         if(position == 0) {
             Intent intent = new Intent(this, ttsanphamtt.class);
             startActivity(intent);
+            Animatoo.animateSlideLeft(this);
         }
     }
+    /////////////////////////////////////////////////////////////////
+
 }

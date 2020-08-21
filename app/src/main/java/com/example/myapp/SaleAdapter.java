@@ -24,7 +24,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler>
     @NonNull
     @Override
     public SaleViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.sale_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.sale_item, parent, false);
         return new SaleAdapter.SaleViewHoler(view);
     }
 
@@ -42,19 +42,19 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler>
         return sales.size();
     }
 
-    public static final class SaleViewHoler extends RecyclerView.ViewHolder
-    {
+    public final class SaleViewHoler extends RecyclerView.ViewHolder {
         ImageView img;
         TextView name;
         TextView price;
         TextView discount;
-        public SaleViewHoler (@NonNull View itemview)
-        {
+
+        public SaleViewHoler(@NonNull View itemview) {
             super(itemview);
-            img  = itemview.findViewById(R.id.sale_img);
-            name  = itemview.findViewById(R.id.sale_name);
-            price  = itemview.findViewById(R.id.price);
-            discount  = itemview.findViewById(R.id.sale_price);
+            img = itemview.findViewById(R.id.sale_img);
+            name = itemview.findViewById(R.id.sale_name);
+            price = itemview.findViewById(R.id.price);
+            discount = itemview.findViewById(R.id.sale_price);
+
         }
     }
 }
