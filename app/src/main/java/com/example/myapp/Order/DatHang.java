@@ -12,7 +12,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.myapp.R;
 
 public class DatHang extends AppCompatActivity {
@@ -50,14 +49,12 @@ public class DatHang extends AppCompatActivity {
     }
 
 
+
+
     public void onBackPressed(){
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
-
-
     public void btnBack(View view) {
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
 }

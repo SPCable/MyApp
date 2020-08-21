@@ -6,15 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.example.myapp.MainActivity;
 import com.example.myapp.R;
 import com.example.myapp.Search.pro_search;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,21 +53,19 @@ public class ttsanphamtt extends AppCompatActivity {
     }
 
 
+
+
+
+
     public void onBackPressed(){
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
-
-
     public void btnBack(View view) {
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
-
     public void btnSearch(View view) {
         if(view == findViewById(R.id.btnSearch_infoSP)){
             startActivity(new Intent(this, pro_search.class));
-            Animatoo.animateSlideUp(this);
         }
     }
 }

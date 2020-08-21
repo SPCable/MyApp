@@ -5,9 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.myapp.R;
 
 import java.util.ArrayList;
@@ -50,8 +48,9 @@ public class pro_search extends AppCompatActivity {
 
     }
 
+
+
     public void onBackPressed(){
         super.onBackPressed();
-        Animatoo.animateSlideDown(this);
     }
 }

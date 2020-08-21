@@ -11,7 +11,6 @@ import android.os.Bundle;
 
 import android.view.View;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.myapp.Account.TaiKhoan;
 import com.example.myapp.Order.DatHang;
 import com.example.myapp.TTSP.ttsanphamtt;
@@ -121,14 +120,12 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     public void orderBtn_main(View view) {
         if(view == findViewById(R.id.btnOrder_main)){
             startActivity(new Intent(this, DatHang.class));
-            Animatoo.animateSlideLeft(this);
         }
     }
 
     public void btnMenu(View view) {
         if(view == findViewById(R.id.btnMenu_main)){
             startActivity(new Intent(this, TaiKhoan.class));
-            Animatoo.animateSlideLeft(this);
         }
     }
 
@@ -137,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         if(position == 0) {
             Intent intent = new Intent(this, ttsanphamtt.class);
             startActivity(intent);
-            Animatoo.animateSlideLeft(this);
         }
     }
     /////////////////////////////////////////////////////////////////

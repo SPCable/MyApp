@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.myapp.R;
 
 public class Payments extends AppCompatActivity {
@@ -17,12 +16,10 @@ public class Payments extends AppCompatActivity {
     }
     public void onBackPressed(){
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
 
 
     public void btnBack(View view) {
         super.onBackPressed();
-        Animatoo.animateSlideRight(this);
     }
 }
