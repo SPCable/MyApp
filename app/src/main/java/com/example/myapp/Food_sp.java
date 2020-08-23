@@ -2,12 +2,7 @@ package com.example.myapp;
 
 public class Food_sp {
     String nameFood;
-    Integer ImgUrl;
-
-    public Food_sp(String nameFood, Integer imgUrl) {
-        this.nameFood = nameFood;
-        ImgUrl = imgUrl;
-    }
+    String ImgUrl;
 
     public String getNameFood() {
         return nameFood;
@@ -17,11 +12,16 @@ public class Food_sp {
         this.nameFood = nameFood;
     }
 
-    public Integer getImgUrl() {
+    public String getImgUrl() {
         return ImgUrl;
     }
 
-    public void setImgUrl(Integer imgUrl) {
+    public void setImgUrl(String imgUrl) {
+        ImgUrl = imgUrl;
+    }
+
+    public Food_sp(String nameFood, String imgUrl) {
+        this.nameFood = nameFood;
         ImgUrl = imgUrl;
     }
 }

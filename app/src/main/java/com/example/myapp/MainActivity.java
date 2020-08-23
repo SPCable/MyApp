@@ -1,20 +1,30 @@
 package com.example.myapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myapp.Account.TaiKhoan;
 import com.example.myapp.Order.DatHang;
 import com.example.myapp.TTSP.ttsanphamtt;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,21 +41,28 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     SaleAdapter saleAdapter;
     BSAdapter bsAdapter;
 
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        firebaseAuth =  firebaseAuth.getInstance();
+
+       // LoadFoods();
+
+
+
         List<Food_sp> food_sps = new ArrayList<>();
-        food_sps.add(new Food_sp("1Thịt bò Mỹ-Canada-Nga", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("2Thịt bò Úc", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("3Thịt Cừu", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("4Thịt Trâu", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("5Thịt Heo", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("6Thịt Gà", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("7Thịt Dê", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("8Hải Sản", R.drawable.beefsteak));
-        food_sps.add(new Food_sp("9Sản phẩm khác", R.drawable.beefsteak));
+        food_sps.add(new Food_sp("1Thịt bò Mỹ-Canada-Nga", ""));
+
         setFoodRecycler(food_sps);
 
         List<banner> banners = new ArrayList<>();
@@ -78,8 +95,28 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
     }
 
+    private void LoadFoods() {
+        final List<Food_sp> food_sps = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("taiducfood").child("productList").child("1");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                food_sps.clear();
+                Food_sp food_sp = snapshot.getValue(Food_sp.class);
+                food_sps.add(food_sp);
+                setFoodRecycler(food_sps);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+
     private void setFoodRecycler(List<Food_sp> food_spList)
     {
+
         foodRecycler = findViewById(R.id.food_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
         foodRecycler.setLayoutManager(layoutManager);

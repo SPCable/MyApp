@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "637027225682",
+    "firebase_url": "https://taiducfood.firebaseio.com",
+    "project_id": "taiducfood",
+    "storage_bucket": "taiducfood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637027225682:android:c412f4a735dd844a5a8f8b",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637027225682-eaas1p4gjo8170iuark7jjfopg2nmsd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPsKRJ6PccihXKzIBJDLX2__fBhqu3Gfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637027225682-eaas1p4gjo8170iuark7jjfopg2nmsd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

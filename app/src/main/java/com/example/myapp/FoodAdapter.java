@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,22 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
-        holder.foodImg.setImageResource(food_spList.get(position).ImgUrl);
-        holder.foodName.setText(food_spList.get(position).nameFood);
+
+
+        Food_sp food_sp = food_spList.get(position);
+        String name = food_sp.getNameFood();
+        String Img = food_sp.getImgUrl();
+
+        holder.foodName.setText(name);
+
+        try
+        {
+
+        }
+        catch (Exception ex)
+        {
+
+        }
 
     }
 
