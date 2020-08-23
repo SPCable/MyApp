@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnMenu_main" type="id" />
+    <item name="btnOrder_main" type="id" />
+</resources>

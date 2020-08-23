@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.Button;
 
 import com.example.myapp.Account.TaiKhoan;
 import com.example.myapp.Order.DatHang;
@@ -20,7 +21,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoodListener {
-
+    Button btnOrder_main, btnMenu_main;
     RecyclerView foodRecycler;
     RecyclerView bannerRecycler;
     RecyclerView saleRecycler;
