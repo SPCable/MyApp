@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
+    private ArrayList<Food_sp> foodList;
+
 
 
     @Override
@@ -56,14 +58,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         progressDialog.setCanceledOnTouchOutside(false);
         firebaseAuth =  firebaseAuth.getInstance();
 
-       // LoadFoods();
-
-
-
-        List<Food_sp> food_sps = new ArrayList<>();
-        food_sps.add(new Food_sp("1Thịt bò Mỹ-Canada-Nga", ""));
-
-        setFoodRecycler(food_sps);
+        LoadFoods();
 
         List<banner> banners = new ArrayList<>();
         banners.add(new banner(R.drawable.beef1));
@@ -96,15 +91,18 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     }
 
     private void LoadFoods() {
-        final List<Food_sp> food_sps = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("taiducfood").child("productList").child("1");
+        foodList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("productList");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                food_sps.clear();
-                Food_sp food_sp = snapshot.getValue(Food_sp.class);
-                food_sps.add(food_sp);
-                setFoodRecycler(food_sps);
+                foodList.clear();
+                for(DataSnapshot ds: snapshot.getChildren())
+                {
+                    Food_sp food_sp = ds.getValue(Food_sp.class);
+                    foodList.add(food_sp);
+                }
+                setFoodRecycler(foodList);
             }
 
             @Override

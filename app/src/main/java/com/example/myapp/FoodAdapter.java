@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
@@ -19,6 +21,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     Context context;
     List<Food_sp> food_spList;
+
 
     public FoodAdapter(Context context, List<Food_sp> food_spList, OnFoodListener onFoodListener) {
         this.context = context;
@@ -45,11 +48,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
         try
         {
-
+            Picasso.get().load(Img).placeholder(R.drawable.beefsteak).into(holder.foodImg);
         }
         catch (Exception ex)
         {
-
+            holder.foodImg.setImageResource(R.drawable.beef1);
         }
 
     }

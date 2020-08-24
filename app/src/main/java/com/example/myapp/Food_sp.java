@@ -24,4 +24,8 @@ public class Food_sp {
         this.nameFood = nameFood;
         ImgUrl = imgUrl;
     }
+
+    public Food_sp()
+    {
+    }
 }
