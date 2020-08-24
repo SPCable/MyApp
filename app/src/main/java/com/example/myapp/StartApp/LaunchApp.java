@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.myapp.MainActivity;
 import com.example.myapp.R;
 
@@ -45,6 +45,7 @@ public class LaunchApp extends AppCompatActivity {
                 Intent intent = new Intent(LaunchApp.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                Animatoo.animateFade(LaunchApp.this);
 
             }
         },SPLASH_SCR);
