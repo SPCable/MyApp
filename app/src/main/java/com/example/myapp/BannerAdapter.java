@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerViewHolder> {
@@ -29,7 +31,16 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 
     @Override
     public void onBindViewHolder(@NonNull BannerViewHolder holder, int position) {
-        holder.bannerImg.setImageResource(bannerList.get(position).ImgBanner);
+        banner blist = bannerList.get(position);
+        String Img = blist.getImgBanner();
+        try
+        {
+            Picasso.get().load(Img).placeholder(R.drawable.beefsteak).into(holder.bannerImg);
+        }
+        catch (Exception ex)
+        {
+            holder.bannerImg.setImageResource(R.drawable.beef1);
+        }
     }
 
     @Override

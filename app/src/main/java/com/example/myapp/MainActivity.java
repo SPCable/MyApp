@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     private ArrayList<Food_sp> foodList;
     private ArrayList<sale> sales;
     private ArrayList<bestseller> bestsellerArrayList;
+    private ArrayList<banner> bannerArrayList;
 
 
 
@@ -62,15 +63,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
         LoadFoods();
         LoadSales();
-
-        List<banner> banners = new ArrayList<>();
-        banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
-        banners.add(new banner(R.drawable.beef1));
-        setBannerRecycler(banners);
-
+        LoadBanner();
         LoadBS();
 
     }
@@ -135,6 +128,30 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
                     bestsellerArrayList.add(bsl);
                 }
                 setBsRecycler(bestsellerArrayList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void LoadBanner()
+    {
+        bannerArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("BannerList");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                bannerArrayList.clear();
+                for(DataSnapshot ds : snapshot.getChildren())
+                {
+                    banner bn = ds.getValue(banner.class);
+                    bannerArrayList.add(bn);
+                }
+                setBannerRecycler(bannerArrayList);
             }
 
             @Override

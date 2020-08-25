@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapp.TTSP.ttsanphamtt;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -44,6 +46,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         String name = food_sp.getNameFood();
         String Img = food_sp.getImgUrl();
 
+        final String id = food_sp.getId();
+
         holder.foodName.setText(name);
         try
         {
@@ -53,6 +57,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         {
             holder.foodImg.setImageResource(R.drawable.beef1);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ttsanphamtt.class);
+                intent.putExtra("ProductUi", id);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

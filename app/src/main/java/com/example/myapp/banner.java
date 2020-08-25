@@ -1,17 +1,19 @@
 package com.example.myapp;
 
 public class banner {
-    Integer ImgBanner;
+    String ImgBanner;
 
-    public banner(Integer imgBanner) {
+    public banner(String imgBanner) {
         ImgBanner = imgBanner;
     }
 
-    public Integer getImgBanner() {
+    public String getImgBanner() {
         return ImgBanner;
     }
 
-    public void setImgBanner(Integer imgBanner) {
+    public void setImgBanner(String imgBanner) {
         ImgBanner = imgBanner;
     }
+
+    public banner(){}
 }
