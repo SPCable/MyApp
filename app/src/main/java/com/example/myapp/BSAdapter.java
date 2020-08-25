@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class BSAdapter extends RecyclerView.Adapter<BSAdapter.BSViewHolder> {
@@ -31,9 +33,21 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.BSViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BSAdapter.BSViewHolder holder, int position) {
-        holder.img.setImageResource(bestsellerList.get(position).Img);
+
+        bestseller best = bestsellerList.get(position);
         holder.price.setText(bestsellerList.get(position).Price);
         holder.name.setText(bestsellerList.get(position).Name);
+
+        String Img =  best.getImg();
+
+        try
+        {
+            Picasso.get().load(Img).placeholder(R.drawable.beefsteak).into(holder.img);
+        }
+        catch (Exception ex)
+        {
+            holder.img.setImageResource(R.drawable.beef1);
+        }
     }
 
     @Override

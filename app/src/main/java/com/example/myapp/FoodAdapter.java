@@ -45,7 +45,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         String Img = food_sp.getImgUrl();
 
         holder.foodName.setText(name);
-
         try
         {
             Picasso.get().load(Img).placeholder(R.drawable.beefsteak).into(holder.foodImg);
@@ -54,7 +53,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         {
             holder.foodImg.setImageResource(R.drawable.beef1);
         }
-
     }
 
     @Override

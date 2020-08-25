@@ -4,9 +4,9 @@ public class sale {
     String Name;
     String Price;
     String Discount;
-    Integer Img;
+    String Img;
 
-    public sale(String name, String price, String discount, Integer img) {
+    public sale(String name, String price, String discount, String img) {
         Name = name;
         Price = price;
         Discount = discount;
@@ -37,11 +37,15 @@ public class sale {
         Discount = discount;
     }
 
-    public Integer getImg() {
+    public String getImg() {
         return Img;
     }
 
-    public void setImg(Integer img) {
+    public void setImg(String img) {
         Img = img;
+    }
+
+    public sale()
+    {
     }
 }

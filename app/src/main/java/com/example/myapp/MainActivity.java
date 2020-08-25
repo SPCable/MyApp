@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     private ProgressDialog progressDialog;
 
     private ArrayList<Food_sp> foodList;
+    private ArrayList<sale> sales;
+    private ArrayList<bestseller> bestsellerArrayList;
 
 
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         firebaseAuth =  firebaseAuth.getInstance();
 
         LoadFoods();
+        LoadSales();
 
         List<banner> banners = new ArrayList<>();
         banners.add(new banner(R.drawable.beef1));
@@ -68,25 +71,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         banners.add(new banner(R.drawable.beef1));
         setBannerRecycler(banners);
 
-        List<sale> sales = new ArrayList<>();
-        sales.add(new sale("aĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        sales.add(new sale("bĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        sales.add(new sale("cĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        sales.add(new sale("dĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        sales.add(new sale("eĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        sales.add(new sale("fĐÙI CỪU CÓ XƯƠNG CHUMP ON (XX:ÚC)", "₫280,000.00", "₫250,000.00", R.drawable.mini_beef));
-        setSaleRecycler(sales);
-
-        List<bestseller> bestsellers = new ArrayList<>();
-        bestsellers.add(new bestseller("aThịt bò Mỹ-Canada-Nga", R.drawable.beef1, "đ100 000"));
-        bestsellers.add(new bestseller("bThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        bestsellers.add(new bestseller("cThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        bestsellers.add(new bestseller("dThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        bestsellers.add(new bestseller("eThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        bestsellers.add(new bestseller("fThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        bestsellers.add(new bestseller("gThịt bò Mỹ-Canada-Nga", R.drawable.beefsteak, "đ100 000"));
-        setBsRecycler(bestsellers);
-
+        LoadBS();
 
     }
 
@@ -109,6 +94,55 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+
+    private void LoadSales()
+    {
+        sales = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("saleList");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                sales.clear();
+                for(DataSnapshot ds : snapshot.getChildren())
+                {
+                    sale sale = ds.getValue(sale.class);
+                    sales.add(sale);
+                }
+                setSaleRecycler(sales);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void LoadBS()
+    {
+        bestsellerArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bestsalerList");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                bestsellerArrayList.clear();
+                for(DataSnapshot ds : snapshot.getChildren())
+                {
+                    bestseller bsl = ds.getValue(bestseller.class);
+                    bestsellerArrayList.add(bsl);
+                }
+                setBsRecycler(bestsellerArrayList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 

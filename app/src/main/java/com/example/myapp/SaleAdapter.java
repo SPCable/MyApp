@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler> {
@@ -30,10 +32,20 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler>
 
     @Override
     public void onBindViewHolder(@NonNull SaleViewHoler holder, int position) {
+        sale salesp = sales.get(position);
+        String Img = salesp.getImg();
         holder.name.setText(sales.get(position).Name);
-        holder.img.setImageResource(sales.get(position).Img);
         holder.price.setText(sales.get(position).Price);
         holder.discount.setText(sales.get(position).Discount);
+
+        try
+        {
+            Picasso.get().load(Img).placeholder(R.drawable.beefsteak).into(holder.img);
+        }
+        catch (Exception ex)
+        {
+            holder.img.setImageResource(R.drawable.beef1);
+        }
     }
 
 
