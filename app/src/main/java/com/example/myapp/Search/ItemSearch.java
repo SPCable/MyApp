@@ -3,9 +3,9 @@ package com.example.myapp.Search;
 public class ItemSearch {
 
     String name;
-    Integer img;
+    String img;
 
-    public ItemSearch(String name, Integer img) {
+    public ItemSearch(String name, String img) {
         this.name = name;
         this.img = img;
     }
@@ -18,11 +18,11 @@ public class ItemSearch {
         this.name = name;
     }
 
-    public Integer getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Integer img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyApp</string>
+    <string name="app_name"></string>
     <string name="taiducfood">Taiducfood</string>
     <string name="t_m_ki_m_t_i_y">Tìm kiếm tại đây!</string>
     <string name="todo">TODO</string>

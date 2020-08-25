@@ -56,4 +56,6 @@ dependencies {
 
     //animation
     implementation 'com.github.mohammadatif:Animatoo:master'
+    //firebase ui
+    implementation 'com.firebaseui:firebase-ui-database:6.3.0'
 }
