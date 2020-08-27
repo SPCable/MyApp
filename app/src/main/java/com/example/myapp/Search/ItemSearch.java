@@ -25,4 +25,9 @@ public class ItemSearch {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public ItemSearch()
+    {
+
+    }
 }

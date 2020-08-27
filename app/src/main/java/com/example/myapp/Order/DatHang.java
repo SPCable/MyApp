@@ -23,20 +23,6 @@ public class DatHang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_hang);
-        List<FoodOrder> foodorder_sps = new ArrayList<>();
-        foodorder_sps.add(new FoodOrder("Thịt bò Mỹ-Canada-Nga", "500 000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt bò Úc", "500 000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt Cừu", "500 000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt Trâu", "500 000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt Heo", "500,000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt Gà", "500,000₫"));
-        foodorder_sps.add(new FoodOrder("Thịt Dê","500,000₫"));
-        foodorder_sps.add(new FoodOrder("Hải Sản", "500,000₫"));
-        foodorder_sps.add(new FoodOrder("Sản phẩm khác", "500,000₫"));
-        setFoodRecycler(foodorder_sps);
-
-
-
     }
 
     private void setFoodRecycler(List<FoodOrder> foodorder_spList)

@@ -3,13 +3,7 @@ package com.example.myapp;
 public class Food_sp {
     String nameFood;
     String ImgUrl;
-    String Id;
-
-    public Food_sp(String nameFood, String imgUrl, String id) {
-        this.nameFood = nameFood;
-        ImgUrl = imgUrl;
-        Id = id;
-    }
+    String idFood;
 
     public String getNameFood() {
         return nameFood;
@@ -27,12 +21,18 @@ public class Food_sp {
         ImgUrl = imgUrl;
     }
 
-    public String getId() {
-        return Id;
+    public String getIdFood() {
+        return idFood;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setIdFood(String idFood) {
+        this.idFood = idFood;
+    }
+
+    public Food_sp(String nameFood, String imgUrl, String idFood) {
+        this.nameFood = nameFood;
+        ImgUrl = imgUrl;
+        this.idFood = idFood;
     }
 
     public Food_sp()

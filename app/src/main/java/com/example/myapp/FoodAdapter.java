@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,10 +44,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
 
         Food_sp food_sp = food_spList.get(position);
-        String name = food_sp.getNameFood();
-        String Img = food_sp.getImgUrl();
+        final String name = food_sp.getNameFood();
+        final String Img = food_sp.getImgUrl();
 
-        final String id = food_sp.getId();
+        final String id = food_sp.getIdFood();
 
         holder.foodName.setText(name);
         try
@@ -63,6 +64,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             public void onClick(View view) {
                 Intent intent = new Intent(context, ttsanphamtt.class);
                 intent.putExtra("ProductUi", id);
+                intent.putExtra("nameProduct",name);
+                intent.putExtra("imageFood",Img);
                 context.startActivity(intent);
             }
         });

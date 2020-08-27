@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
                 for(DataSnapshot ds: snapshot.getChildren())
                 {
                     Food_sp food_sp = ds.getValue(Food_sp.class);
+                    System.out.println(food_sp.getIdFood().toString());
                     foodList.add(food_sp);
                 }
                 setFoodRecycler(foodList);
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         foodRecycler = findViewById(R.id.food_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
         foodRecycler.setLayoutManager(layoutManager);
-        foodAdapter = new FoodAdapter(this, food_spList, this);
+        foodAdapter = new FoodAdapter(this, food_spList,this);
         foodRecycler.setAdapter(foodAdapter);
     }
 

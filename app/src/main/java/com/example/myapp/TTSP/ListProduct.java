@@ -6,16 +6,17 @@ public class ListProduct {
     String name;
     String brand;
     String price;
-    Integer image;
+    String image;
+    String nameProduct;
+    String imageProduct;
 
 
-    public ListProduct(String name, String brand, String price, Integer image) {
+    public ListProduct(String name, String brand, String price, String image) {
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.image = image;
     }
-
 
     public String getName() {
         return name;
@@ -41,11 +42,16 @@ public class ListProduct {
         this.price = price;
     }
 
-    public Integer getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Integer image) {
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    public ListProduct()
+    {
+
     }
 }
