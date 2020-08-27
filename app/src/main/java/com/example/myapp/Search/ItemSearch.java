@@ -2,32 +2,30 @@ package com.example.myapp.Search;
 
 public class ItemSearch {
 
-    String name;
-    String img;
+    String Name;
+    String Img;
+
+    public ItemSearch() {
+    }
 
     public ItemSearch(String name, String img) {
-        this.name = name;
-        this.img = img;
+        this.Name = name;
+        this.Img = img;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
     public String getImg() {
-        return img;
+        return Img;
     }
 
     public void setImg(String img) {
-        this.img = img;
-    }
-
-    public ItemSearch()
-    {
-
+        Img = img;
     }
 }
