@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
+import com.example.myapp.Buy_Activity;
 import com.example.myapp.R;
 
 
@@ -25,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class pro_search extends AppCompatActivity {
+public class pro_search extends AppCompatActivity implements ItemSearchAdapter.OnSearchListener {
 
     RecyclerView rv_search;
     EditText editText;
@@ -95,11 +97,24 @@ public class pro_search extends AppCompatActivity {
         rv_search = findViewById(R.id.rvSearch);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rv_search.setLayoutManager(layoutManager);
-        itemSearchAdapter = new ItemSearchAdapter(this, itemSearchList);
+        itemSearchAdapter = new ItemSearchAdapter(this, itemSearchList, this);
         rv_search.setAdapter(itemSearchAdapter);
 
     }
+
+
+
     public void onBackPressed(){
         super.onBackPressed();
+    }
+
+
+
+    @Override
+    public void onSearchClick(int position) {
+        if(position == 0) {
+            Intent intent = new Intent(this, Buy_Activity.class);
+            startActivity(intent);
+        }
     }
 }

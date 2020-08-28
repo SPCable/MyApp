@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoodListener {
+public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoodListener, BSAdapter.OnBestListener, SaleAdapter.OnSaleListener {
     Button btnOrder_main, btnMenu_main;
     RecyclerView foodRecycler;
     RecyclerView bannerRecycler;
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         saleRecycler = findViewById(R.id.sale_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
         saleRecycler.setLayoutManager(layoutManager);
-        saleAdapter = new SaleAdapter(this, saleList);
+        saleAdapter = new SaleAdapter(this, saleList, this);
         saleRecycler.setAdapter(saleAdapter);
     }
 
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         bsRecycler = findViewById(R.id.bs_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         bsRecycler.setLayoutManager(layoutManager);
-        bsAdapter = new BSAdapter(this, bestsellerList);
+        bsAdapter = new BSAdapter(this, bestsellerList, this);
         bsRecycler.setAdapter(bsAdapter);
     }
 
@@ -222,6 +222,22 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     public void onFoodClick(int position) {
         if(position == 0) {
             Intent intent = new Intent(this, ttsanphamtt.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onBestClick(int position) {
+        if(position == 0) {
+            Intent intent = new Intent(this, Buy_Activity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onSaleClick(int position) {
+        if(position == 0) {
+            Intent intent = new Intent(this, Buy_Activity.class);
             startActivity(intent);
         }
     }

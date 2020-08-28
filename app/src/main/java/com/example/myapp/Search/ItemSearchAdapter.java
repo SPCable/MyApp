@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapp.FoodAdapter;
 import com.example.myapp.Food_sp;
 import com.example.myapp.R;
 import com.example.myapp.bestseller;
@@ -21,21 +22,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.ItemSearchViewHolder> implements Filterable {
+
+    OnSearchListener mOnSearchListener;
+
     Context context;
     ArrayList<ItemSearch> itemSearchList, filterList;
     FilterProduct filter;
 
-    public ItemSearchAdapter(Context context, ArrayList<ItemSearch> itemSearchList){
+    public ItemSearchAdapter(Context context, ArrayList<ItemSearch> itemSearchList, OnSearchListener onSearchListener){
         this.context = context;
         this.itemSearchList = itemSearchList;
         this.filterList = itemSearchList;
+        this.mOnSearchListener = onSearchListener;
     }
     @NonNull
     @Override
     public ItemSearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.search_item,parent,false);
-        return new ItemSearchViewHolder(view);
+        return new ItemSearchViewHolder(view, mOnSearchListener);
 
     }
 
@@ -70,16 +75,30 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
         return filter;
     }
 
-    public class ItemSearchViewHolder extends RecyclerView.ViewHolder {
+    public class ItemSearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView productImage;
         TextView productName;
+        OnSearchListener onSearchListener;
 
-        public ItemSearchViewHolder(@NonNull View itemView) {
+        public ItemSearchViewHolder(@NonNull View itemView, OnSearchListener onSearchListener) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.search_image);
             productName = itemView.findViewById(R.id.search_name);
+
+
+            this.onSearchListener = onSearchListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onSearchListener.onSearchClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnSearchListener{
+        void onSearchClick(int position);
     }
 }

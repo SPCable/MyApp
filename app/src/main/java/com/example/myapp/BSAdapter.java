@@ -16,19 +16,23 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class BSAdapter extends RecyclerView.Adapter<BSAdapter.BSViewHolder> {
+
+    OnBestListener mOnBestListener;
+
     Context context;
     List<bestseller> bestsellerList;
 
-    public BSAdapter(Context context, List<bestseller> bestsellerList) {
+    public BSAdapter(Context context, List<bestseller> bestsellerList, OnBestListener onBestListener) {
         this.context = context;
         this.bestsellerList = bestsellerList;
+        this.mOnBestListener = onBestListener;
     }
 
     @NonNull
     @Override
     public BSAdapter.BSViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.bs_item,parent,false);
-        return new BSAdapter.BSViewHolder(view);
+        return new BSAdapter.BSViewHolder(view, mOnBestListener);
     }
 
     @Override
@@ -55,18 +59,31 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.BSViewHolder> {
         return bestsellerList.size();
     }
 
-    public static final class BSViewHolder extends RecyclerView.ViewHolder
+    public static final class BSViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView name;
         TextView price;
         ImageView img;
 
-        public BSViewHolder(@NonNull View itemview)
+        OnBestListener onBestListener;
+
+        public BSViewHolder(@NonNull View itemview, OnBestListener onBestListener)
         {
             super(itemview);
             name = itemview.findViewById(R.id.bs_name);
             price =  itemview.findViewById(R.id.bs_price);
             img =  itemview.findViewById(R.id.bs_img);
+
+            this.onBestListener = onBestListener;
+            itemview.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onBestListener.onBestClick(getAdapterPosition());
+        }
+    }
+    public interface OnBestListener{
+        void onBestClick(int position);
     }
 }
