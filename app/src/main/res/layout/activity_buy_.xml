@@ -63,7 +63,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             app:srcCompat="@drawable/beef1" />
 
     </com.google.android.material.appbar.AppBarLayout>

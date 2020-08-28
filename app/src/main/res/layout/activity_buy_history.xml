@@ -54,6 +54,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -70,8 +71,21 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="COMING SOON"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:translationZ="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

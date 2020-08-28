@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 
 
@@ -40,6 +41,7 @@ public class pro_search extends AppCompatActivity {
         editText = findViewById(R.id.editTimKiemSP);
         rv_search = findViewById(R.id.rvSearch);
 
+
         LoadSearch();
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -50,6 +52,7 @@ public class pro_search extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
+
                     itemSearchAdapter.getFilter().filter(charSequence);
                 }
                 catch (Exception e){
@@ -65,8 +68,9 @@ public class pro_search extends AppCompatActivity {
     }
 
     private void LoadSearch(){
+
         itemSearchesList = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("saleList");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("SearchList");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -93,6 +97,7 @@ public class pro_search extends AppCompatActivity {
         rv_search.setLayoutManager(layoutManager);
         itemSearchAdapter = new ItemSearchAdapter(this, itemSearchList);
         rv_search.setAdapter(itemSearchAdapter);
+
     }
     public void onBackPressed(){
         super.onBackPressed();

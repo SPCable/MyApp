@@ -42,9 +42,9 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
     @Override
     public void onBindViewHolder(@NonNull ItemSearchViewHolder holder, int position) {
         ItemSearch itemSearch = itemSearchList.get(position);
-        holder.name.setText(itemSearchList.get(position).Name);
+        holder.productName.setText(itemSearchList.get(position).name);
 
-        String Img =  itemSearch.getImg();
+        String Img =  itemSearch.getImage();
 
         try
         {
@@ -73,13 +73,13 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
     public class ItemSearchViewHolder extends RecyclerView.ViewHolder {
 
         ImageView productImage;
-        TextView name;
+        TextView productName;
 
         public ItemSearchViewHolder(@NonNull View itemView) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.search_image);
-            name = itemView.findViewById(R.id.search_name);
+            productName = itemView.findViewById(R.id.search_name);
         }
     }
 }
