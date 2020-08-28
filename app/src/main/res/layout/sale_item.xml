@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/priceold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -70,9 +70,9 @@
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto"
             android:text="Giá gốc:"
-            app:layout_constraintBottom_toBottomOf="@+id/price"
-            app:layout_constraintEnd_toStartOf="@+id/price"
-            app:layout_constraintTop_toTopOf="@+id/price" />
+            app:layout_constraintBottom_toBottomOf="@+id/priceold"
+            app:layout_constraintEnd_toStartOf="@+id/priceold"
+            app:layout_constraintTop_toTopOf="@+id/priceold" />
 
         <TextView
             android:id="@+id/textView24"

@@ -64,7 +64,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler>
             super(itemview);
             img = itemview.findViewById(R.id.sale_img);
             name = itemview.findViewById(R.id.sale_name);
-            price = itemview.findViewById(R.id.price);
+            price = itemview.findViewById(R.id.priceold);
             discount = itemview.findViewById(R.id.sale_price);
 
         }

@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="120dp">
 
         <TextView
             android:id="@+id/foodCount"
@@ -31,9 +31,7 @@
             android:id="@+id/food_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_bold"
             android:text="TextView"
@@ -41,30 +39,26 @@
             android:textColor="#DE7D24"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toBottomOf="@+id/food_name" />
+            app:layout_constraintEnd_toStartOf="@+id/btnDel" />
 
         <TextView
             android:id="@+id/food_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="235dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Text"
             android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnDel"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/add_db"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +76,28 @@
             app:layout_constraintBottom_toBottomOf="@+id/foodCount"
             app:layout_constraintStart_toEndOf="@+id/foodCount"
             app:layout_constraintTop_toTopOf="@+id/foodCount" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="Giá gốc:"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/food_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodCount" />
+
+        <TextView
+            android:id="@+id/priceold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="100 000 vnđ"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

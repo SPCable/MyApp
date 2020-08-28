@@ -70,10 +70,47 @@
             android:scrollbars="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Họ và tên"
+                    android:textColor="#C70039"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#FFFFFF"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto_bold"
+                    android:hint="... Nhập tên tại đây"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="#FFFF">
+                android:background="#FFFF"
+                android:translationY="8dp">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -84,7 +121,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="Số điện thoại"
                     android:textColor="#C70039"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,15 +130,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
                     android:background="#00000000"
                     android:ems="10"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/roboto_bold"
                     android:hint="... Nhập số điện thoại"
                     android:inputType="phone"
                     android:textColorHint="#4D000000"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -111,9 +148,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="#FFFF">
+                android:background="#FFFF"
+                android:translationY="8dp">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -124,19 +162,20 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="Địa chỉ"
                     android:textColor="#C70039"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvLocation"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/roboto"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Địa chỉ hiện ở đây"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -149,7 +188,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="24dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/carbon_location"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -164,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="#FFFF"
+                android:translationY="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
@@ -209,20 +249,8 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="96dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Giá Gốc"
-            android:textColor="#DE7D24"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.735" />
 
         <TextView
             android:id="@+id/textView8"
@@ -230,14 +258,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Giá sau ưu đãi"
+            android:text="Tổng tiền"
             android:textColor="#C70039"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -248,6 +274,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/tien_mat" />
+
+        <TextView
+            android:id="@+id/tongtien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="1 000 000 đ"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

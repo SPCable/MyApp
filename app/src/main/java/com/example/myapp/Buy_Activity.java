@@ -89,7 +89,7 @@ public class Buy_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(Count > 0) {
-                    addData(nameItem,priceItem,tongtien.toString(),count.toString());
+                    addData(nameItem,priceItem,tongtien.toString(),Count.toString());
                     Toast.makeText(Buy_Activity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_LONG).show();
                 }
             }
@@ -102,13 +102,12 @@ public class Buy_Activity extends AppCompatActivity {
             itemId++;
             EasyDB easyDB = EasyDB.init(Buy_Activity.this,"ITEM_DB")
                     .setTableName("ITEMS_TABLE")
-                    .addColumn(new Column("itemID", new String[]{"text","unique"}))
                     .addColumn(new Column("itemName", new String[]{"text","not null"}))
                     .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
                     .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
                     .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
                     .doneTableColumn();
-            Boolean b= easyDB.addData("itemID",itemId)
+            Boolean b= easyDB
                     .addData("itemName",nameItem)
                     .addData("itemPrice",giagoc)
                     .addData("itemFinal",giatra)

@@ -2,6 +2,7 @@ package com.example.myapp.Order;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.core.app.ActivityCompat;
@@ -10,16 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.FilePermission;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +33,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+
+import p32929.androideasysql_library.Column;
+import p32929.androideasysql_library.EasyDB;
 
 public class DatHang extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
@@ -39,16 +47,22 @@ public class DatHang extends AppCompatActivity implements GoogleApiClient.Connec
     private TextView tvLocation;
     Geocoder geocoder;
     List<Address> addresses;
+    ArrayList<FoodOrder> foodOrders;
+    TextView tongtien;
+    Integer finalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_hang);
+        tongtien = findViewById(R.id.tongtien);
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         if (checkPlayServices()) {
             // Building the GoogleApi client
             buildGoogleApiClient();
         }
+        ShowBill();
+        tongtien.setText(finalPrice + " đ");
     }
 
     private void setFoodRecycler(List<FoodOrder> foodorder_spList)
@@ -58,6 +72,42 @@ public class DatHang extends AppCompatActivity implements GoogleApiClient.Connec
         foodRecycler.setLayoutManager(layoutManager);
         FoodOrderAdapter = new FoodOrderAdapter(this,foodorder_spList);
         foodRecycler.setAdapter(FoodOrderAdapter);
+    }
+
+
+    void ShowBill()
+    {
+        foodOrders = new ArrayList<>();
+
+
+        EasyDB easyDB = EasyDB.init(this,"ITEM_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("ID", new String[]{"text","unique"}))
+                .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                .doneTableColumn();
+
+
+        Cursor res = easyDB.getAllData();
+        while (res.moveToNext())
+        {
+            String id =  res.getString(0);
+            String name =  res.getString(1);
+            String priceo = res.getString(2);
+            String price =  res.getString(3);
+            String cout =  res.getString(4);
+
+            FoodOrder foodOrder = new FoodOrder(""+name,""+price+" đ",""+cout,""+id,""+priceo+" đ");
+
+            foodOrders.add(foodOrder);
+            finalPrice += Integer.parseInt(price);
+        }
+
+
+
+       setFoodRecycler(foodOrders);
     }
 
 
