@@ -111,6 +111,7 @@
                 android:nestedScrollingEnabled="true"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:translationZ="20dp"
+                android:visibility="invisible"
                 app:cardBackgroundColor="#FF5722"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
