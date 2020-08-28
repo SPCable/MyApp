@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapp.R;
 
 import java.util.List;
+
+import p32929.androideasysql_library.Column;
+import p32929.androideasysql_library.EasyDB;
 
 
 public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.FoodOrderViewHolder> {
@@ -34,13 +38,40 @@ public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.Food
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodOrderAdapter.FoodOrderViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final FoodOrderAdapter.FoodOrderViewHolder holder, final int position) {
         final FoodOrder foodOrder = foodorder_spList.get(position);
         final  String id = foodOrder.getId();
+        final String cost = foodOrder.getFoodPrice();
         holder.foodName.setText(foodorder_spList.get(position).nameFood);
         holder.foodprice.setText(foodorder_spList.get(position).foodPrice);
         holder.foodCount.setText(foodorder_spList.get(position).foodCount);
         holder.foodpriceO.setText(foodorder_spList.get(position).foodPriceO);
+
+
+        holder.btndel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EasyDB easyDB = EasyDB.init(context,"ITEM_DB")
+                        .setTableName("ITEMS_TABLE")
+                        .addColumn(new Column("ID", new String[]{"text","unique"}))
+                        .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                        .doneTableColumn();
+
+                easyDB.deleteRow(1, id);
+
+                foodorder_spList.remove(position);
+                notifyItemChanged(position);
+                notifyDataSetChanged();
+
+                Integer tx = Integer.parseInt(((DatHang)context).tongtien.getText().toString().trim().replace(" đ", ""));
+                Integer total = tx - Integer.parseInt(cost.replace(" đ",""));
+
+                ((DatHang)context).tongtien.setText(total.toString()+" đ");
+            }
+        });
     }
 
 
@@ -51,7 +82,7 @@ public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.Food
 
     final class FoodOrderViewHolder extends RecyclerView.ViewHolder
     {
-        Button btndel;
+        ImageButton btndel;
         TextView foodprice;
         TextView foodName;
         TextView foodCount;
@@ -64,6 +95,7 @@ public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.Food
             foodprice = itemView.findViewById(R.id.food_price);
             foodCount = itemView.findViewById(R.id.foodCount);
             foodpriceO = itemView.findViewById(R.id.priceold);
+            btndel = itemView.findViewById(R.id.btnDel);
         }
     }
 }

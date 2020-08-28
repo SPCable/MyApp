@@ -18,6 +18,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,13 +50,15 @@ public class DatHang extends AppCompatActivity implements GoogleApiClient.Connec
     List<Address> addresses;
     ArrayList<FoodOrder> foodOrders;
     TextView tongtien;
-    Integer finalPrice = 0;
+    Button btnTT;
+    public Integer finalPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_hang);
         tongtien = findViewById(R.id.tongtien);
+        btnTT=  findViewById(R.id.btnTT);
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         if (checkPlayServices()) {
             // Building the GoogleApi client
@@ -79,39 +82,39 @@ public class DatHang extends AppCompatActivity implements GoogleApiClient.Connec
     {
         foodOrders = new ArrayList<>();
 
+        try {
+            EasyDB easyDB = EasyDB.init(this,"ITEM_DB")
+                    .setTableName("ITEMS_TABLE")
+                    .addColumn(new Column("ID", new String[]{"text","unique"}))
+                    .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                    .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                    .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                    .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                    .doneTableColumn();
+            Cursor res = easyDB.getAllData();
+            while (res.moveToNext())
+            {
+                String id =  res.getString(0);
+                String name =  res.getString(1);
+                String priceo = res.getString(2);
+                String price =  res.getString(3);
+                String cout =  res.getString(4);
 
-        EasyDB easyDB = EasyDB.init(this,"ITEM_DB")
-                .setTableName("ITEMS_TABLE")
-                .addColumn(new Column("ID", new String[]{"text","unique"}))
-                .addColumn(new Column("itemName", new String[]{"text","not null"}))
-                .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
-                .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
-                .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
-                .doneTableColumn();
+                FoodOrder foodOrder = new FoodOrder(""+name,""+price+" đ",""+cout,""+id,""+priceo+" đ");
 
-
-        Cursor res = easyDB.getAllData();
-        while (res.moveToNext())
+                foodOrders.add(foodOrder);
+                finalPrice += Integer.parseInt(price);
+            }
+            setFoodRecycler(foodOrders);
+        }catch (Exception ex)
         {
-            String id =  res.getString(0);
-            String name =  res.getString(1);
-            String priceo = res.getString(2);
-            String price =  res.getString(3);
-            String cout =  res.getString(4);
-
-            FoodOrder foodOrder = new FoodOrder(""+name,""+price+" đ",""+cout,""+id,""+priceo+" đ");
-
-            foodOrders.add(foodOrder);
-            finalPrice += Integer.parseInt(price);
+            Toast.makeText(this,"Không có sản phẩm",Toast.LENGTH_SHORT).show();
         }
-
-
-
-       setFoodRecycler(foodOrders);
     }
 
-
-
+    void Pay()
+    {
+    }
 
     public void onBackPressed(){
         super.onBackPressed();
