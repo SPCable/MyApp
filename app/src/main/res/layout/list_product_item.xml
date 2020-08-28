@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/product_img"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="130dp"
+            android:layout_height="110dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +58,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="200,000,000₫"
+            android:text="200,000,000"
             android:textColor="#DE7D24"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_brand" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="₫"
+            android:textColor="#DE7D24"
+            android:textSize="18sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/product_price"
+            app:layout_constraintStart_toEndOf="@+id/product_price"
+            app:layout_constraintTop_toTopOf="@+id/product_price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.myapp.Account.TaiKhoan;
 import com.example.myapp.Order.DatHang;
+import com.example.myapp.Search.pro_search;
 import com.example.myapp.TTSP.ttsanphamtt;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -222,6 +223,12 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         if(position == 0) {
             Intent intent = new Intent(this, ttsanphamtt.class);
             startActivity(intent);
+        }
+    }
+
+    public void main_Search(View view) {
+        if(view == findViewById(R.id.edit_search)){
+            startActivity(new Intent(this, pro_search.class));
         }
     }
     /////////////////////////////////////////////////////////////////
