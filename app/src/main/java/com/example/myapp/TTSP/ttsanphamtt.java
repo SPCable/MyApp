@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapp.Buy_Activity;
 import com.example.myapp.Food_sp;
 import com.example.myapp.R;
 import com.example.myapp.Search.pro_search;
@@ -66,7 +67,6 @@ public class ttsanphamtt extends AppCompatActivity implements OnItemListener {
 
 
         loadProduct();
-
     }
 
 

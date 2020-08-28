@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapp.Buy_Activity;
+import com.example.myapp.Order.DatHang;
 import com.example.myapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +49,11 @@ public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.ListProd
         holder.brand.setText(listProduct.getBrand());
         holder.price.setText(listProduct.getPrice());
 
+        final String nameItem = listProduct.getName();
+        final String imgItem = listProduct.getImage();
+        final String priceItem = listProduct.getPrice();
+
+
         String Img = listProduct.getImage();
 
         try
@@ -57,6 +64,18 @@ public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.ListProd
         {
             holder.productImage.setImageResource(R.drawable.beef1);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Buy_Activity.class);
+
+                intent.putExtra("nameFood",nameItem);
+                intent.putExtra("imgItem",imgItem);
+                intent.putExtra("priceItem",priceItem);
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -85,7 +104,6 @@ public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.ListProd
         @Override
         public void onClick(View view) {
             onItemListener.OnItemClick(getAdapterPosition());
-            System.out.println("1");
         }
     }
 

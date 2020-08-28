@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="150dp"
     app:cardBackgroundColor="#DFDFDF"
     app:cardCornerRadius="0dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:background="#FFFFFF">
+        android:layout_height="140dp"
+        android:background="#FFFFFF"
+        android:translationY="8dp">
 
         <ImageView
             android:id="@+id/bs_img"
@@ -47,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_bold"
             android:text="TextView"
@@ -55,7 +56,8 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bs_name" />
+            app:layout_constraintTop_toBottomOf="@+id/bs_name"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView25"

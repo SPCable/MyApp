@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+    android:translationY="30dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Buy_Activity"
     tools:showIn="@layout/activity_buy_">
@@ -49,7 +50,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/priceItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
@@ -69,7 +70,7 @@
             app:srcCompat="@drawable/line" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tongTien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
@@ -90,42 +91,42 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btnUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
                     android:background="#00FFFFFF"
-                    app:layout_constraintEnd_toStartOf="@+id/textView16"
+                    app:layout_constraintStart_toEndOf="@+id/count"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:text="10"
                     android:textColor="#C70039"
                     android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnUp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+                    app:layout_constraintTop_toTopOf="@+id/btnUp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/btnDown"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:background="#00FFFFFF"
-                    app:layout_constraintStart_toEndOf="@+id/textView16"
+                    app:layout_constraintEnd_toStartOf="@+id/count"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnAdd"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -144,7 +145,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnUp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

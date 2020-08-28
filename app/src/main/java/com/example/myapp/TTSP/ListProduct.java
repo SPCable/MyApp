@@ -7,15 +7,14 @@ public class ListProduct {
     String brand;
     String price;
     String image;
-    String nameProduct;
-    String imageProduct;
+    String idItem;
 
-
-    public ListProduct(String name, String brand, String price, String image) {
+    public ListProduct(String name, String brand, String price, String image, String idItem, String nameProduct, String imageProduct) {
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.image = image;
+        this.idItem = idItem;
     }
 
     public String getName() {
@@ -49,6 +48,15 @@ public class ListProduct {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(String idItem) {
+        this.idItem = idItem;
+    }
+
 
     public ListProduct()
     {
