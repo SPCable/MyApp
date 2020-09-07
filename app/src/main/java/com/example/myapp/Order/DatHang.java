@@ -53,6 +53,13 @@ public class DatHang extends AppCompatActivity {
 
         ShowBill();
         tongtien.setText(finalPrice + " đ");
+        btnTT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Pay();
+                Toast.makeText(DatHang.this, "Đặt hàng thành công!",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setFoodRecycler(List<FoodOrder> foodorder_spList)
@@ -101,6 +108,17 @@ public class DatHang extends AppCompatActivity {
 
     void Pay()
     {
+        EasyDB easyDB = EasyDB.init(this,"ITEM_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("ID", new String[]{"text","unique"}))
+                .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                .doneTableColumn();
+        easyDB.deleteAllDataFromTable();
+
+
     }
 
     public void onBackPressed(){
