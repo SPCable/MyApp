@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        locationRequest = LocationRequest.create();
-        locationRequest.setInterval(4000);
-        locationRequest.setFastestInterval(2000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//        locationRequest = LocationRequest.create();
+//        locationRequest.setInterval(4000);
+//        locationRequest.setFastestInterval(2000);
+//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
     }

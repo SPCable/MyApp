@@ -6,24 +6,37 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.myapp.R;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -43,7 +56,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageView imgLocate;
     TextView txtlocation, txtOrderLocation;
 
+    LocationRequest locationRequest;
+    double a;
+    double b;
 
+    View mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +81,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         geocoder = new Geocoder(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //btn_get_my_location
+        mapView = mapFragment.getView();
+        //Location
+
+        //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+//        locationRequest = LocationRequest.create();
+//        locationRequest.setInterval(200);
+//        locationRequest.setFastestInterval(100);
+//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     }
 
@@ -80,23 +107,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setPadding(0,0,0,580);
+
         getTapLocation(googleMap);
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        {
-            enableUserLocation();
-            zoomToUserLocation();
+
+
+        try {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                enableUserLocation();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(a,b), 18));
+
+                zoomToUserLocation(googleMap);
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
+                }
+            }
         }
-        else
+        catch (Exception e)
         {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
-            {
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
-            }
-            else
-            {
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
-            }
+            e.printStackTrace();
         }
 
     }
@@ -132,23 +165,132 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onCameraIdle() {
                 LatLng tapLocation = googleMap.getCameraPosition().target;
                 txtlocation.setText(getAddress(tapLocation.latitude,tapLocation.longitude));
+                a=tapLocation.latitude;
+                b=tapLocation.longitude;
+                Log.d(TAG, "a: " + a);
+                Log.d(TAG, "b: " + b);
             }
         });
     }
 
     private void enableUserLocation() {
         mMap.setMyLocationEnabled(true);
+//        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        mMap.getUiSettings().setRotateGesturesEnabled(false);
+        mMap.getUiSettings().setScrollGesturesEnabledDuringRotateOrZoom(false);
+//        mMap.setBuildingsEnabled(false);
+        mMap.getUiSettings().setTiltGesturesEnabled(false);
+
+
+
+        if(mapView != null && mapView.findViewById(Integer.parseInt("1")) != null)
+        {
+            View locationBtn = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationBtn.getLayoutParams();
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            layoutParams.setMargins(0, 0, 0, 30);
+
+        }
     }
 
-    private void zoomToUserLocation(){
-        Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
-        locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+
+    LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            super.onLocationResult(locationResult);
+            if(locationResult == null)
+            {
+                return;
             }
-        });
+            for(Location location: locationResult.getLocations())
+            {
+                Log.d(TAG, "onLocationResult: " + location.toString());
+            }
+        }
+    };
+
+    private void startLocationUpdates(){
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+    }
+
+    private void zoomToUserLocation(final GoogleMap googleMap){
+
+        try {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED)
+            {
+                Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
+                locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                    }
+                });
+            }
+            else
+            {
+                Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
+                final SettingsClient client = LocationServices.getSettingsClient(this);
+                locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
+
+                    @Override
+                    public void onSuccess(Location location) {
+
+                        if(location !=null)
+                        {
+                            LocationSettingsRequest request = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build();
+
+                            Task<LocationSettingsResponse> locationSettingsResponseTask = client.checkLocationSettings(request);
+                            locationSettingsResponseTask.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+                                @Override
+                                public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                                    startLocationUpdates();
+                                }
+                            });
+
+                            if(location.getLatitude() != a && location.getLongitude() != b)
+                            {
+                                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                            }
+                            else
+                            {
+
+                                LatLng latLng = new LatLng(a, b);
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                                Log.d(TAG, "A: " + a);
+                                Log.d(TAG, "B: " + b);
+//                                googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+//                                    @Override
+//                                    public void onCameraIdle() {
+//                                        LatLng tapLocation = googleMap.getCameraPosition().target;
+//                                        LatLng latLng = new LatLng(a, b);
+//                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+//                                    }
+//                                });
+                            }
+                        }
+                        else
+                        {
+                            Log.d(TAG, "onSuccess: Location was null............");
+                        }
+                    }
+                });
+
+                locationTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: " + e.getLocalizedMessage());
+                    }
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -158,7 +300,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
                 enableUserLocation();
-                zoomToUserLocation();
+                //zoomToUserLocation(googleMap);
             }
             else
             {
@@ -176,11 +318,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void btnconfirmLocation(View view) {
         Intent i = new Intent();
-        i.putExtra("message",txtlocation.getText().toString());
+        i.putExtra("message", txtlocation.getText().toString());
         setResult(RESULT_OK, i);
         finish();
     }
 
+    //bấm btnShop: lấy data location
     public static MapsActivity getActivityInstance()
     {
         return INSTANCE;
@@ -191,5 +334,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String Data = txtlocation.getText().toString();
         return Data;
     }
-
+    ////////////////////////////////////
 }

@@ -176,7 +176,7 @@
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#FFFFFF"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Địa chỉ hiện ở đây"
+                    android:hint="Địa chỉ hiện ở đây"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnLocation"

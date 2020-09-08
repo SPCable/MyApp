@@ -20,53 +20,52 @@
         tools:context=".Order.MapsActivity" />
 
     <androidx.appcompat.widget.Toolbar
-
-
+        android:id="@+id/toolbar2"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="60dp"
-        android:background="#00C70039"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#C70039"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:translationX="-16dp">
 
             <Button
                 android:id="@+id/btnBackMap"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/abc_vector_test"
                 android:onClick="btnBack"
+                map:layout_constraintBottom_toBottomOf="parent"
                 map:layout_constraintStart_toStartOf="parent"
                 map:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtLocation"
-                android:layout_width="0dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="14dp"
-                android:background="#B2FFFFFF"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/roboto_bold"
-                android:textColor="#000000"
-                android:textSize="16sp"
+                android:text="Chọn Nơi Giao Hàng"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                map:layout_constraintBottom_toBottomOf="parent"
                 map:layout_constraintEnd_toEndOf="parent"
-                map:layout_constraintStart_toEndOf="@+id/btnBackMap"
+                map:layout_constraintStart_toStartOf="parent"
                 map:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
-
     <ImageView
         android:id="@+id/imgLocation"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="230dp"
         android:src="@drawable/place_marker"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
@@ -77,18 +76,74 @@
         android:id="@+id/btnCfmLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/add_db"
+        android:background="#C70039"
         android:fontFamily="@font/roboto_bold"
         android:onClick="btnconfirmLocation"
+        android:padding="16dp"
         android:text="Chọn địa điểm này"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="18sp"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:background="#FFFFFF"
+        map:layout_constraintBottom_toTopOf="@+id/btnCfmLocation"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Giao hàng tới"
+            android:textSize="16sp"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="+ Thêm tòa nhà, tầng, phòng, v.v."
+            android:inputType="textPersonName"
+            android:textColor="#C70039"
+            android:textColorHint="#C70039"
+            android:textSize="18sp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/txtLocation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

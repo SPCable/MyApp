@@ -8,17 +8,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.example.myapp.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
@@ -26,14 +33,18 @@ import p32929.androideasysql_library.EasyDB;
 public class DatHang extends AppCompatActivity {
 
     String data;
-
+    private static final String TAG = "DatHang";
     RecyclerView foodRecycler;
     FoodOrderAdapter FoodOrderAdapter;
 
     ArrayList<FoodOrder> foodOrders;
-    TextView tongtien, tvLocation;
-    Button btnTT;
+    TextView tongtien, tvLocation, txtlocation;
+    Button btnTT, btnCFMLocation;
     public Integer finalPrice = 0;
+
+
+    private GoogleMap mMap;
+
 
     @SuppressLint("WrongConstant")
     @Override
@@ -42,11 +53,19 @@ public class DatHang extends AppCompatActivity {
         setContentView(R.layout.activity_dat_hang);
         tongtien = findViewById(R.id.tongtien);
         btnTT=  findViewById(R.id.btnTT);
+        Button btnCFMLocation=  (Button) findViewById(R.id.btnCfmLocation);
+        this.btnCFMLocation = btnCFMLocation;
         tvLocation = (TextView) findViewById(R.id.tvLocation);
+        txtlocation = (TextView) findViewById(R.id.txtLocation);
 
+//        mMap = googleMap;
+//        getTapLocation(googleMap);
         try{
-            data=MapsActivity.getActivityInstance().getData();
-            tvLocation.setText(data);
+
+                data=MapsActivity.getActivityInstance().getData();
+                tvLocation.setText(data);
+                Log.d(TAG, "đã Bấm!!!!!!!!");
+
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,11 +152,52 @@ public class DatHang extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data)
     {
         if(requestCode == 999 && resultCode == RESULT_OK)
         {
             tvLocation.setText(data.getStringExtra("message"));
         }
     }
+
+//
+//    public String getAddress(double lat, double lon){
+//
+//        String address = "";
+//
+//        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+//
+//        List<Address> addresses;
+//
+//        try{
+//
+//            addresses = geocoder.getFromLocation(lat,lon,1);
+//            if(addresses.size() > 0)
+//            {
+//                address = addresses.get(0).getAddressLine(0);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return address;
+//    }
+//
+//    private void getTapLocation(final GoogleMap googleMap) {
+//
+//        googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+//            @Override
+//            public void onCameraIdle() {
+//                LatLng tapLocation = googleMap.getCameraPosition().target;
+//                tvLocation.setText(getAddress(tapLocation.latitude,tapLocation.longitude));
+//            }
+//        });
+//    }
+//    btnCFMLocation.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//
+//        }
+//    });
 }
