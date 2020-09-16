@@ -59,7 +59,7 @@ public class Buy_Activity extends AppCompatActivity {
         }
 
         name.setText(nameItem);
-        price.setText(priceItem+" đ" + "x" + Count.toString());
+        price.setText(priceItem+" đ" + " x " + Count.toString());
         count.setText("0");
         tong.setText("0"+" đ");
 

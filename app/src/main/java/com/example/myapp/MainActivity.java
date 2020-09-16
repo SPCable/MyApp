@@ -279,17 +279,14 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         @Override
         public void onLocationResult(LocationResult locationResult) {
             //super.onLocationResult(locationResult);
-            if(locationResult == null)
-            {
+            if (locationResult == null) {
                 return;
             }
-            for(Location location: locationResult.getLocations())
-            {
+            for (Location location : locationResult.getLocations()) {
                 Log.d(TAG, "onLocationResult: " + location.toString());
             }
         }
     };
-
 
 
     @Override
@@ -305,13 +302,13 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
         stopLocationUpdates();
     }
 
 
-    private void checkSettingsAndStartLocationUpdates(){
+    private void checkSettingsAndStartLocationUpdates() {
         LocationSettingsRequest request = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build();
         SettingsClient client = LocationServices.getSettingsClient(this);
 
@@ -325,8 +322,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         locationSettingsResponseTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                if(e instanceof ResolvableApiException)
-                {
+                if (e instanceof ResolvableApiException) {
                     ResolvableApiException apiException = (ResolvableApiException) e;
                     try {
                         apiException.startResolutionForResult(MainActivity.this, 1001);
@@ -338,7 +334,17 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
         });
     }
 
-    private void startLocationUpdates(){
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
     }
 

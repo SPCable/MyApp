@@ -2,44 +2,90 @@ package com.example.myapp.Order;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.loader.content.AsyncTaskLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+<<<<<<< Updated upstream
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+=======
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.HandlerThread;
+import android.text.Html;
+>>>>>>> Stashed changes
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+<<<<<<< Updated upstream
 import java.util.Locale;
+=======
+import java.util.Properties;
+>>>>>>> Stashed changes
 
+import com.example.myapp.Complete;
+import com.example.myapp.MainActivity;
 import com.example.myapp.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
 public class DatHang extends AppCompatActivity {
 
+<<<<<<< Updated upstream
     String data;
     private static final String TAG = "DatHang";
+=======
+    Date date;
+    String data, sEmail, sPassword, email;
+>>>>>>> Stashed changes
     RecyclerView foodRecycler;
+    ImageView wn1 , wn2, wn3;
     FoodOrderAdapter FoodOrderAdapter;
 
     ArrayList<FoodOrder> foodOrders;
+<<<<<<< Updated upstream
     TextView tongtien, tvLocation, txtlocation;
     Button btnTT, btnCFMLocation;
+=======
+    TextView tongtien, tvLocation;
+    EditText editGmail, name, phone;
+    Button btnTT;
+>>>>>>> Stashed changes
     public Integer finalPrice = 0;
 
 
@@ -56,10 +102,19 @@ public class DatHang extends AppCompatActivity {
         Button btnCFMLocation=  (Button) findViewById(R.id.btnCfmLocation);
         this.btnCFMLocation = btnCFMLocation;
         tvLocation = (TextView) findViewById(R.id.tvLocation);
+<<<<<<< Updated upstream
         txtlocation = (TextView) findViewById(R.id.txtLocation);
 
 //        mMap = googleMap;
 //        getTapLocation(googleMap);
+=======
+        editGmail=findViewById(R.id.editMail);
+        name = findViewById(R.id.editName);
+        phone = findViewById(R.id.editPhone);
+        wn1 = findViewById(R.id.wn1);
+        wn2 = findViewById(R.id.wn2);
+        wn3 = findViewById(R.id.wn3);
+>>>>>>> Stashed changes
         try{
 
                 data=MapsActivity.getActivityInstance().getData();
@@ -70,16 +125,221 @@ public class DatHang extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ShowBill();
+
+        ShowBill(); // hien thi thong tin hoa don
         tongtien.setText(finalPrice + " đ");
+
+        // tai khoan gmail smtp:
+        sEmail = "hjhj2305@gmail.com";
+        sPassword = "rlxpglgnjbqjyteo";
         btnTT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pay();
-                Toast.makeText(DatHang.this, "Đặt hàng thành công!",Toast.LENGTH_SHORT).show();
+                new Sendmail().execute();
             }
         });
     }
+
+    private class Sendmail extends AsyncTask<Message,String,String> {             //Gửi mail cho khách hàng
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(DatHang.this,"Vui lòng đợi","Đang đặt hàng...",true,false);
+        }
+
+        @Override
+        protected String doInBackground(Message... messages) {
+            Properties properties = new Properties();
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.socketFactory.port", "465");
+            properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.port", "465");
+            Integer c = 0;
+
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(sEmail,sPassword);
+                }
+            });
+
+            try{
+                Message message = new MimeMessage(session); // tạo 1 mail gửi cho người dùng
+
+
+                message.setFrom(new InternetAddress(sEmail));
+
+                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(editGmail.getText().toString().trim()));
+
+                message.setSubject("Taiducfood - Kính chào quý khách");
+
+                MimeBodyPart mimeBodyPart = new MimeBodyPart();
+                Multipart multipart  = new MimeMultipart();
+                String htmnlHeader = "<table style=font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\">\n" +
+                        "        <td>\n" +
+                        "           <img src='https://firebasestorage.googleapis.com/v0/b/taiducfood.appspot.com/o/119126284_350226082826029_2841802760364491756_n.png?alt=media&token=c63a4718-d56e-4efe-af39-f8b2a0f40b98' alt='asdasd' width=\"250px\" style=\"border-radius: 16px;\">\n" +
+                        "        </td>\n" +
+                        "        <td style=\"padding-left: 16px;\">\n" +
+                        "            <p style=\"font-size: 28px;\">Công ty TNHH Thực Phẩm Tài Đức</p>\n" +
+                        "            <p>Website: <a href='taiducfood.com'> Taiducfood.com</a></p>" +
+                        "            <p>Địa chỉ: <a> 46/13-46/15 Đường Tân Cảng, Phường 25, Quận Bình Thạnh, TP.HCM, Việt Nam</a></p>\n" +
+                        "            <p>Email: <a> info.taiducfood@gmail.com</a></p>\n" +
+                        "            <p>Phone: <a href=\"tel:0913098639\">091 309 8639</a> - <a href=\"tel:0918698639\">091 869 8639</a> - <a href=\"tel:0935588910\">093 558 8910</a></p>\n" +
+                        "        </td>\n" +
+                        "    </table>";
+                mimeBodyPart.setContent(htmnlHeader,"text/html;charset=utf-8");
+                multipart.addBodyPart(mimeBodyPart);
+
+                mimeBodyPart = new MimeBodyPart();
+                mimeBodyPart.setText("Kính chào " + name.getText().toString().trim() + "!\n");
+                multipart.addBodyPart(mimeBodyPart);
+
+                mimeBodyPart = new MimeBodyPart();
+                mimeBodyPart.setText("Mã đơn hàng: " + "#123456789"+ "\n");
+                multipart.addBodyPart(mimeBodyPart);
+                ;
+
+                mimeBodyPart = new MimeBodyPart();
+                String htmltag = "<h3>Thông tin đơn hàng:</h3>" +
+                        "<table border=\"1\" width=\"820px\">\n" +
+                        "        <tr>\n" +
+                        "            <th>STT</th>\n" +
+                        "            <th>Tên sản phẩm</th>\n" +
+                        "            <th>Giá</th>\n" +
+                        "            <th>Số lượng</th>\n" +
+                        "            <th>Khuyến mãi</th>\n" +
+                        "            <th>Tổng</th>\n" +
+                        "        </tr>";
+                mimeBodyPart.setContent(htmltag,"text/html;charset=utf-8");
+                multipart.addBodyPart(mimeBodyPart);
+
+                EasyDB easyDB = EasyDB.init(DatHang.this,"ITEM_DB")
+                        .setTableName("ITEMS_TABLE")
+                        .addColumn(new Column("ID", new String[]{"text","unique"}))
+                        .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                        .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                        .doneTableColumn();
+                Cursor res = easyDB.getAllData();
+
+                while (res.moveToNext())
+                {
+                    c++;
+                    String id =  res.getString(0);
+                    String name =  res.getString(1);
+                    String priceo = res.getString(2);
+                    String price =  res.getString(3);
+                    String cout =  res.getString(4);
+
+                    mimeBodyPart = new MimeBodyPart();
+                    String htmlcode ="<tr>\n" +
+                            "            <th>"+c.toString().trim()+"</th>\n" +
+                            "            <th>"+name+"</th>\n" +
+                            "            <th>"+priceo+" vnd"+"</th>\n" +
+                            "            <th>"+cout+"</th>\n" +
+                            "            <th></th>\n" +
+                            "            <th>"+price+" vnd"+"</th>\n" +
+                            "        </tr>";
+                    mimeBodyPart.setContent(htmlcode,"text/html;charset=utf-8");
+                    multipart.addBodyPart(mimeBodyPart);
+                }
+
+                mimeBodyPart = new MimeBodyPart();
+                String htmlfooter = " <tr>\n" +
+                        "        <th></th>\n" +
+                        "        <th></th>\n" +
+                        "        <th></th>\n" +
+                        "        <th></th>\n" +
+                        "        <th>Tổng tiền</th>\n" +
+                        "        <th>"+finalPrice+" vnd"+"</th>\n" +
+                        "        </tr>\n" +
+                        "    </table>\n" +
+                        "</body>";
+
+                mimeBodyPart.setContent(htmlfooter,"text/html;charset=utf-8");
+                multipart.addBodyPart(mimeBodyPart);
+
+                mimeBodyPart = new MimeBodyPart();
+                String htmlInfoUser = "<h3 style=\"text-align: start;\">Thông tin khách hàng: </h3>\n" +
+                        "    <span style=\"text-align: left;\">\n" +
+                        "        <p>\n" +
+                        "            <span>Tên khách hàng: </span> \n" +
+                        "            <span>"+name.getText().toString().trim()+"</span>\n" +
+                        "        </p>\n" +
+                        "        <p>\n" +
+                        "            <span>Địa chỉ giao hàng: </span> \n" +
+                        "            <span>"+tvLocation.getText().toString().trim()+"</span>\n" +
+                        "        </p>\n" +
+                        "        <p>\n" +
+                        "            <span>Số điện thoại: </span> \n" +
+                        "            <span>"+phone.getText().toString().trim()+"</span>\n" +
+                        "        </p>\n" +
+                        "        <p>\n" +
+                        "            <span>Email: </span> \n" +
+                        "            <span>"+editGmail.getText().toString().trim()+"</span>\n" +
+                        "        </p>\n" +
+                        "        <p style=\"font-weight: bold; font-size: 18px;\">\n" +
+                        "            <span>Hình thức thanh toán:</span>\n" +
+                        "            <span>Thanh toán khi nhận hàng</span>\n" +
+                        "        </p>\n" +
+                        "    </span>";
+
+                mimeBodyPart.setContent(htmlInfoUser,"text/html;charset=utf-8");
+                multipart.addBodyPart(mimeBodyPart);
+
+                mimeBodyPart = new MimeBodyPart();
+                String htmlfooter1 = "<footer style=\"text-align: center;\" >\n" +
+                        "    <p>\n" +
+                        "        Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi. Nhân viên của chúng tôi sẽ liên lạc cho quý khách trong thời gian sớm nhất.\n" +
+                        "    </p>\n" +
+                        "    <p>Bản quyền của Taiducfood ® 2020. Bảo lưu mọi quyền.</p>\n" +
+                        "</footer>";
+
+                mimeBodyPart.setContent(htmlfooter1,"text/html;charset=utf-8");
+                multipart.addBodyPart(mimeBodyPart);
+
+                message.setContent(multipart);
+
+                Transport.send(message);
+
+                return "Success";
+
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return "Error";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progressDialog.dismiss();
+            if(s.equals("Success"))
+            {
+                Pay();
+                Intent intent = new Intent(DatHang.this,Complete.class);
+                startActivity(intent);
+            }
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DatHang.this);
+                builder.setTitle(Html.fromHtml("<font color='#509324'>Thông báo</font>"));
+                builder.setMessage("Đặt hàng không thành công! Xin vui lòng thử lại");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        }
+    } //gửi mail cho khách hàng
+
 
     private void setFoodRecycler(List<FoodOrder> foodorder_spList)
     {
@@ -94,7 +354,6 @@ public class DatHang extends AppCompatActivity {
     void ShowBill()
     {
         foodOrders = new ArrayList<>();
-
         try {
             EasyDB easyDB = EasyDB.init(this,"ITEM_DB")
                     .setTableName("ITEMS_TABLE")
@@ -114,7 +373,6 @@ public class DatHang extends AppCompatActivity {
                 String cout =  res.getString(4);
 
                 FoodOrder foodOrder = new FoodOrder(""+name,""+price+" đ",""+cout,""+id,""+priceo+" đ");
-
                 foodOrders.add(foodOrder);
                 finalPrice += Integer.parseInt(price);
             }
@@ -124,6 +382,8 @@ public class DatHang extends AppCompatActivity {
             Toast.makeText(this,"Không có sản phẩm",Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     void Pay()
     {
@@ -136,8 +396,6 @@ public class DatHang extends AppCompatActivity {
                 .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
                 .doneTableColumn();
         easyDB.deleteAllDataFromTable();
-
-
     }
 
     public void onBackPressed(){
@@ -152,10 +410,16 @@ public class DatHang extends AppCompatActivity {
     }
 
     @Override
+<<<<<<< Updated upstream
     protected void onActivityResult(int requestCode, int resultCode, final Intent data)
     {
         if(requestCode == 999 && resultCode == RESULT_OK)
         {
+=======
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 999 && resultCode == RESULT_OK) {
+>>>>>>> Stashed changes
             tvLocation.setText(data.getStringExtra("message"));
         }
     }

@@ -47,31 +47,37 @@ public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.Food
         holder.foodCount.setText(foodorder_spList.get(position).foodCount);
         holder.foodpriceO.setText(foodorder_spList.get(position).foodPriceO);
 
+        try
+        {
+            holder.btndel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EasyDB easyDB = EasyDB.init(context,"ITEM_DB")
+                            .setTableName("ITEMS_TABLE")
+                            .addColumn(new Column("ID", new String[]{"text","unique"}))
+                            .addColumn(new Column("itemName", new String[]{"text","not null"}))
+                            .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
+                            .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
+                            .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
+                            .doneTableColumn();
 
-        holder.btndel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EasyDB easyDB = EasyDB.init(context,"ITEM_DB")
-                        .setTableName("ITEMS_TABLE")
-                        .addColumn(new Column("ID", new String[]{"text","unique"}))
-                        .addColumn(new Column("itemName", new String[]{"text","not null"}))
-                        .addColumn(new Column("itemPrice", new String[]{"text","not null"}))
-                        .addColumn(new Column("itemFinal", new String[]{"text","not null"}))
-                        .addColumn(new Column("itemNumber", new String[]{"text","not null"}))
-                        .doneTableColumn();
+                    easyDB.deleteRow(1, id);
 
-                easyDB.deleteRow(1, id);
+                    foodorder_spList.remove(position);
+                    notifyItemChanged(position);
+                    notifyDataSetChanged();
 
-                foodorder_spList.remove(position);
-                notifyItemChanged(position);
-                notifyDataSetChanged();
+                    Integer tx = Integer.parseInt(((DatHang)context).tongtien.getText().toString().trim().replace(" đ", ""));
+                    Integer total = tx - Integer.parseInt(cost.replace(" đ",""));
 
-                Integer tx = Integer.parseInt(((DatHang)context).tongtien.getText().toString().trim().replace(" đ", ""));
-                Integer total = tx - Integer.parseInt(cost.replace(" đ",""));
-
-                ((DatHang)context).tongtien.setText(total.toString()+" đ");
-            }
-        });
+                    ((DatHang)context).tongtien.setText(total.toString()+" đ");
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex);
+        }
     }
 
 
