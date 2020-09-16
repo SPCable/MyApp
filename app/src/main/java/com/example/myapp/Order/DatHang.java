@@ -12,17 +12,16 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-<<<<<<< Updated upstream
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
-=======
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.HandlerThread;
 import android.text.Html;
->>>>>>> Stashed changes
+
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -36,11 +35,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< Updated upstream
+
 import java.util.Locale;
-=======
+
 import java.util.Properties;
->>>>>>> Stashed changes
+
 
 import com.example.myapp.Complete;
 import com.example.myapp.MainActivity;
@@ -66,26 +65,24 @@ import p32929.androideasysql_library.EasyDB;
 
 public class DatHang extends AppCompatActivity {
 
-<<<<<<< Updated upstream
+
     String data;
     private static final String TAG = "DatHang";
-=======
+
     Date date;
-    String data, sEmail, sPassword, email;
->>>>>>> Stashed changes
+    String sEmail, sPassword, email;
+
     RecyclerView foodRecycler;
     ImageView wn1 , wn2, wn3;
     FoodOrderAdapter FoodOrderAdapter;
 
     ArrayList<FoodOrder> foodOrders;
-<<<<<<< Updated upstream
+
     TextView tongtien, tvLocation, txtlocation;
     Button btnTT, btnCFMLocation;
-=======
-    TextView tongtien, tvLocation;
+
     EditText editGmail, name, phone;
-    Button btnTT;
->>>>>>> Stashed changes
+
     public Integer finalPrice = 0;
 
 
@@ -102,19 +99,19 @@ public class DatHang extends AppCompatActivity {
         Button btnCFMLocation=  (Button) findViewById(R.id.btnCfmLocation);
         this.btnCFMLocation = btnCFMLocation;
         tvLocation = (TextView) findViewById(R.id.tvLocation);
-<<<<<<< Updated upstream
+
         txtlocation = (TextView) findViewById(R.id.txtLocation);
 
 //        mMap = googleMap;
 //        getTapLocation(googleMap);
-=======
+
         editGmail=findViewById(R.id.editMail);
         name = findViewById(R.id.editName);
         phone = findViewById(R.id.editPhone);
         wn1 = findViewById(R.id.wn1);
         wn2 = findViewById(R.id.wn2);
         wn3 = findViewById(R.id.wn3);
->>>>>>> Stashed changes
+
         try{
 
                 data=MapsActivity.getActivityInstance().getData();
@@ -410,16 +407,11 @@ public class DatHang extends AppCompatActivity {
     }
 
     @Override
-<<<<<<< Updated upstream
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data)
-    {
-        if(requestCode == 999 && resultCode == RESULT_OK)
-        {
-=======
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 999 && resultCode == RESULT_OK) {
->>>>>>> Stashed changes
+
             tvLocation.setText(data.getStringExtra("message"));
         }
     }
