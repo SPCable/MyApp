@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     private ArrayList<bestseller> bestsellerArrayList;
     private ArrayList<banner> bannerArrayList;
 
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,10 +95,10 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-//        locationRequest = LocationRequest.create();
-//        locationRequest.setInterval(4000);
-//        locationRequest.setFastestInterval(2000);
-//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(4000);
+        locationRequest.setFastestInterval(2000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
     }
@@ -225,6 +227,29 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
 
 
     //////////////////////Click Event////////////////////////////////
+
+    @Override
+    public void onBackPressed(){
+
+
+        if(backPressedTime + 2000 > System.currentTimeMillis())
+        {
+            backToast.cancel();
+            super.onBackPressed();
+//            if(requestCode == 999 && resultCode == RESULT_OK && backPressedTime + 2000 >System.currentTimeMillis())
+//            {
+//                super.onBackPressed();
+//            }
+            return;
+        }
+        else
+        {
+            backToast = Toast.makeText(getBaseContext(), "Nhấn thêm lần nữa để thoát", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
+
 
     public void orderBtn_main(View view) {
         if (view == findViewById(R.id.btnOrder_main)) {

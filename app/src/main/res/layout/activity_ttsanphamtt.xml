@@ -30,13 +30,13 @@
                 android:id="@+id/imageView10"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:foreground="@drawable/black_back_frame"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/product1" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/bar"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -78,7 +78,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:background="@drawable/ic_baseline_search_24"
+                        android:background="@drawable/ic_baseline_search_244"
                         android:onClick="btnSearch"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

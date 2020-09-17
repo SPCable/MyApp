@@ -23,6 +23,7 @@
             android:translationX="-16dp">
 
             <Button
+                android:id="@+id/btnBacktoMain"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
@@ -38,39 +39,52 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textView5"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:background="#C70039"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="bottom"
-        android:padding="16dp"
-        android:text="Chào Bạn!"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar4123" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4123">
+
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_242"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="bottom"
+            android:onClick="btnLogin"
+            android:padding="16dp"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnLichsumua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+
+
         android:background="#FFFFFF"
         android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-
-
         android:fontFamily="@font/roboto"
         android:onClick="btnLichSuMua"
         android:padding="16dp"
         android:text="Lịch sử mua"
         android:textAlignment="textStart"
+        android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
 
     <Button
         android:id="@+id/btnQuanlythanhtoan"
@@ -84,6 +98,7 @@
         android:padding="16dp"
         android:text="Quản lý thanh toán"
         android:textAlignment="textStart"
+        android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

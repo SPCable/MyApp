@@ -44,6 +44,8 @@ import java.util.Properties;
 import com.example.myapp.Complete;
 import com.example.myapp.MainActivity;
 import com.example.myapp.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -100,7 +102,7 @@ public class DatHang extends AppCompatActivity {
         this.btnCFMLocation = btnCFMLocation;
         tvLocation = (TextView) findViewById(R.id.tvLocation);
 
-        txtlocation = (TextView) findViewById(R.id.txtLocation);
+        txtlocation = (TextView) findViewById(R.id.txtLocation); //bên activity_maps
 
 //        mMap = googleMap;
 //        getTapLocation(googleMap);
@@ -111,6 +113,16 @@ public class DatHang extends AppCompatActivity {
         wn1 = findViewById(R.id.wn1);
         wn2 = findViewById(R.id.wn2);
         wn3 = findViewById(R.id.wn3);
+
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if(signInAccount != null){
+            name.setText(signInAccount.getDisplayName());
+            editGmail.setText(signInAccount.getEmail());
+        }
+        else {
+            name.setText(null);
+            editGmail.setText(null);
+        }
 
         try{
 
@@ -407,8 +419,9 @@ public class DatHang extends AppCompatActivity {
     }
 
     @Override
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //final Intent data
+        //super.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 999 && resultCode == RESULT_OK) {
 

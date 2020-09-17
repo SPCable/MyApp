@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#C70039"
-        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawableStart="@drawable/ic_baseline_search_244"
         android:hint="...Tìm kiếm sản phẩm"
         android:inputType="textPersonName"
         android:padding="16dp"

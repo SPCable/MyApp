@@ -47,7 +47,7 @@
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:background="@drawable/search_bg"
-        android:drawableStart="@drawable/search_icon"
+        android:drawableStart="@drawable/ic_main_baseline_search_24"
         android:drawablePadding="8dp"
         android:editable="false"
         android:ems="10"
