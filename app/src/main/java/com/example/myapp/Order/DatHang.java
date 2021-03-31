@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +53,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -73,6 +76,7 @@ public class DatHang extends AppCompatActivity {
 
     //new Paypal
     public static final  String  PAYPAL_KEY = "ARngjN6PNhsNq67WQ3LWZVHJPo2YdC18WtpbWjaDIn6N60rt0eOHro9acC1c495KUAesMUJ3PqYaKnbM";
+    private static final int REQUEST_CODE_PAYMENT =1;
     private static final int REQUEST_CODE_FUTURE_PAYMENT =2;
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
     private static PayPalConfiguration config;
@@ -179,6 +183,15 @@ public class DatHang extends AppCompatActivity {
     }
 
     private void MakePaymet() {
+        Intent intent = new Intent(this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+        startService(intent);
+
+        thingsToBuy = new PayPalPayment(new BigDecimal(String.valueOf("10.45")), "USD", "Payment",PayPalPayment.PAYMENT_INTENT_SALE);
+        Intent payment = new Intent(this, PaymentActivity.class);
+        payment.putExtra(PaymentActivity.EXTRA_PAYMENT,thingsToBuy);
+        payment.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+        startActivityForResult(payment,REQUEST_CODE_PAYMENT);
     }
 
     private class Sendmail extends AsyncTask<Message,String,String> {             //Gửi mail cho khách hàng
