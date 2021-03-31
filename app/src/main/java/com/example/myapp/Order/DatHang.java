@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.print.PrinterId;
 import android.util.Log;
@@ -159,16 +160,22 @@ public class DatHang extends AppCompatActivity {
             }
         });
 
-//        btnPayPal.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                MakePaymet();
-//            }
-//        });
-//        ConfigPaypal();
+        btnPayPal.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                MakePaymet();
+            }
+        });
+        ConfigPaypal();
     }
 
     private void ConfigPaypal() {
+        config = new PayPalConfiguration()
+                .environment(CONFIG_ENVIRONMENT)
+                .clientId(PAYPAL_KEY)
+                .merchantName("Paypal Login")
+                .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
+                .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
     }
 
     private void MakePaymet() {
