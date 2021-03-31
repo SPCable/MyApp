@@ -1,5 +1,6 @@
 package com.example.myapp.Order;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.loader.content.AsyncTaskLoader;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -51,10 +53,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+import org.json.JSONException;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -114,7 +121,9 @@ public class DatHang extends AppCompatActivity {
         setContentView(R.layout.activity_dat_hang);
         tongtien = findViewById(R.id.tongtien);
         btnTT=  findViewById(R.id.btnTT);
+        btnPayPal=  findViewById(R.id.btnPaypal);
         Button btnCFMLocation=  (Button) findViewById(R.id.btnCfmLocation);
+
         this.btnCFMLocation = btnCFMLocation;
         tvLocation = (TextView) findViewById(R.id.tvLocation);
 
@@ -192,6 +201,63 @@ public class DatHang extends AppCompatActivity {
         payment.putExtra(PaymentActivity.EXTRA_PAYMENT,thingsToBuy);
         payment.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
         startActivityForResult(payment,REQUEST_CODE_PAYMENT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 999 && resultCode == RESULT_OK) {
+
+            tvLocation.setText(data.getStringExtra("message"));
+        }
+        if(requestCode == REQUEST_CODE_PAYMENT){
+            if(resultCode == Activity.RESULT_OK){
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                if(confirm !=null)
+                {
+                    try {
+                        System.out.println(confirm.toJSONObject().toString(4));
+                        System.out.println(confirm.getPayment().toJSONObject().toString(4));
+                        Toast.makeText(this, "Thanh toán thành công",Toast.LENGTH_LONG).show();
+                    }
+                    catch (JSONException e)
+                    {
+                        Toast.makeText(this, e.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+            else if(requestCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "Đã hủy thanh toán",Toast.LENGTH_LONG).show();
+            }else if(resultCode == PaymentActivity.RESULT_EXTRAS_INVALID){
+                Toast.makeText(this,"đã bị lỗi",Toast.LENGTH_LONG).show();
+            }
+        }else if(requestCode == REQUEST_CODE_FUTURE_PAYMENT){
+            if(resultCode == Activity.RESULT_OK){
+                PayPalAuthorization auth = data.getParcelableExtra(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION);
+                if(auth!=null)
+                {
+                    try{
+                        Log.i("Payment Example", auth.toJSONObject().toString(4));
+
+                        String authorization_code = auth.getAuthorizationCode();
+                        Log.d("PaymentExample", authorization_code);
+
+                        Log.e("paypal",  "future Payment code received from Paypal: "+authorization_code);
+                    } catch (JSONException e)
+                    {
+                        Toast.makeText(this, "Đã bị lỗi", Toast.LENGTH_LONG).show();
+                        Log.e("PaymentExample", "Lỗi nặng: ",e);
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "đã hủy thanh toán",Toast.LENGTH_LONG).show();
+                Log.d("PaymentExample","User canceled");
+            } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID){
+                Toast.makeText(this, "error_occurred",Toast.LENGTH_LONG).show();
+                Log.d("PaymentExample","lỗi");
+            }
+        }
     }
 
     private class Sendmail extends AsyncTask<Message,String,String> {             //Gửi mail cho khách hàng
@@ -463,16 +529,12 @@ public class DatHang extends AppCompatActivity {
         startActivityForResult(new Intent(getApplicationContext(), MapsActivity.class),999);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //final Intent data
-        //super.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 999 && resultCode == RESULT_OK) {
-
-            tvLocation.setText(data.getStringExtra("message"));
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        //final Intent data
+//        //super.onActivityResult(requestCode, resultCode, data);
+//
+//    }
 
 //
 //    public String getAddress(double lat, double lon){
