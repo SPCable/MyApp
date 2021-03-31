@@ -1,14 +1,10 @@
 package com.example.myapp.Order;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.core.content.ContextCompat;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.biometric.BiometricPrompt;
-import androidx.biometric.BiometricManager;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -16,11 +12,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-//import android.hardware.biometrics.BiometricManager;
-//import android.hardware.biometrics.BiometricPrompt;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.print.PrinterId;
 import android.util.Log;
 
 import android.os.AsyncTask;
@@ -29,7 +24,6 @@ import android.os.HandlerThread;
 import android.text.Html;
 
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,19 +40,17 @@ import java.util.List;
 import java.util.Locale;
 
 import java.util.Properties;
-import java.util.concurrent.Executor;
 
 
 import com.example.myapp.Complete;
-import com.example.myapp.Login.ProfileAccount;
 import com.example.myapp.MainActivity;
 import com.example.myapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -77,6 +69,14 @@ import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
 public class DatHang extends AppCompatActivity {
+
+    //new Paypal
+    public static final  String  PAYPAL_KEY = "ARngjN6PNhsNq67WQ3LWZVHJPo2YdC18WtpbWjaDIn6N60rt0eOHro9acC1c495KUAesMUJ3PqYaKnbM";
+    private static final int REQUEST_CODE_FUTURE_PAYMENT =2;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+    private static PayPalConfiguration config;
+    PayPalPayment thingsToBuy;
+    Button btnPayPal;
 
 
     String data;
@@ -98,7 +98,8 @@ public class DatHang extends AppCompatActivity {
 
     public Integer finalPrice = 0;
 
-    public GoogleMap mMap;
+
+    private GoogleMap mMap;
 
 
     @SuppressLint("WrongConstant")
@@ -106,9 +107,6 @@ public class DatHang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_hang);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
         tongtien = findViewById(R.id.tongtien);
         btnTT=  findViewById(R.id.btnTT);
         Button btnCFMLocation=  (Button) findViewById(R.id.btnCfmLocation);
@@ -154,66 +152,26 @@ public class DatHang extends AppCompatActivity {
         // tai khoan gmail smtp:
         sEmail = "hjhj2305@gmail.com";
         sPassword = "rlxpglgnjbqjyteo";
-
-
-        BiometricManager biometricManager = BiometricManager.from(this);
-        switch (biometricManager.canAuthenticate()){
-            case BiometricManager.BIOMETRIC_SUCCESS:
-                Log.d("Biometric:", "Có Biometric");
-                break;
-            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(this,"Vui lòng sử dụng/cài đặt bảo mật sinh trắc học để thanh toán",Toast.LENGTH_LONG).show();
-                btnTT.setVisibility(View.GONE);
-                break;
-        }
-
-        Executor executor = ContextCompat.getMainExecutor(this);
-        final BiometricPrompt biometricPrompt = new BiometricPrompt(DatHang.this, executor, new BiometricPrompt.AuthenticationCallback()
-        {
-            @Override
-            public void onAuthenticationError(int errorCode, CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                Toast.makeText(getApplicationContext(),"Xác thực bảo mật thành công",Toast.LENGTH_SHORT).show();
-
-                new Sendmail().execute();
-//                Intent intent = new Intent(DatHang.this,Complete.class);
-//                startActivity(intent);
-//                finish();
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-            }
-        });
-
-        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Thanh Toán")
-                .setDescription("Dùng bảo mật sinh trắc học để thanh toán")
-                .setNegativeButtonText("Hủy")
-                .build();
-
-
         btnTT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-                    biometricPrompt.authenticate(promptInfo);
-
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Vui lòng đăng nhập để thanh toán", Toast.LENGTH_SHORT).show();
-                }
+                new Sendmail().execute();
             }
         });
+
+        btnPayPal.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                MakePaymet();
+            }
+        });
+        ConfigPaypal();
+    }
+
+    private void ConfigPaypal() {
+    }
+
+    private void MakePaymet() {
     }
 
     private class Sendmail extends AsyncTask<Message,String,String> {             //Gửi mail cho khách hàng
@@ -390,7 +348,6 @@ public class DatHang extends AppCompatActivity {
             }
         }
 
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -400,7 +357,6 @@ public class DatHang extends AppCompatActivity {
                 Pay();
                 Intent intent = new Intent(DatHang.this,Complete.class);
                 startActivity(intent);
-//                finish();
             }
             else
             {
