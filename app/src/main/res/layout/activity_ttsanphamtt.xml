@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".TTSP.ttsanphamtt">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -23,7 +24,6 @@
 
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="drfhtbgrgnffgj"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
@@ -36,7 +36,7 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="70dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -50,10 +50,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto_bold"
                         android:text="Thịt bò Mỹ-Canada-Nga"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,6 @@
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
                         android:background="@drawable/abc_vector_test"
                         android:onClick="btnBack"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +77,6 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
                         android:background="@drawable/ic_baseline_search_244"
                         android:onClick="btnSearch"
                         app:layout_constraintBottom_toBottomOf="parent"

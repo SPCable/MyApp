@@ -6,22 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Complete">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="0dp"
         android:layout_height="400dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/add_db"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:translationY="-90dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Đặt hàng thành công"
             android:textColor="#FFFFFF"
@@ -34,8 +34,8 @@
             android:id="@+id/imageView4"
             android:layout_width="240dp"
             android:layout_height="238dp"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/conbotrang" />
@@ -45,7 +45,6 @@
         android:id="@+id/btnHistory"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:background="@drawable/body_bg"
         android:drawableRight="@drawable/ic_baseline_history_24"
         android:fontFamily="@font/roboto_bold"
@@ -53,8 +52,8 @@
         android:text="Lịch sử mua hàng"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
+        android:translationY="-20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
@@ -69,6 +68,7 @@
         android:padding="16dp"
         android:text="Tiếp tục mua sắm"
         android:textColor="#FFFFFF"
+        android:translationY="-20dp"
         app:layout_constraintEnd_toEndOf="@+id/btnHistory"
         app:layout_constraintStart_toStartOf="@+id/btnHistory"
         app:layout_constraintTop_toBottomOf="@+id/btnHistory" />

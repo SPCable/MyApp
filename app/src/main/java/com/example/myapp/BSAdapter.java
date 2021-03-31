@@ -28,6 +28,7 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.BSViewHolder> {
         this.mOnBestListener = onBestListener;
     }
 
+
     @NonNull
     @Override
     public BSAdapter.BSViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

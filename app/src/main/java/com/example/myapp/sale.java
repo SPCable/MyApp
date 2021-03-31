@@ -13,6 +13,7 @@ public class sale {
         Img = img;
     }
 
+
     public String getName() {
         return Name;
     }

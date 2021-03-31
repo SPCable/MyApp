@@ -25,7 +25,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Login.ProfileAccount"></activity>
         <activity android:name=".Login.Login" />
-        <activity android:name=".Complete" />
+        <activity android:name=".Complete" >
+
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

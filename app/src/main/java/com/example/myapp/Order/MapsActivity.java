@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageView imgLocate;
     TextView txtlocation, txtOrderLocation;
 
+
     LocationRequest locationRequest;
     double a;
     double b;
@@ -69,6 +71,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         imgLocate = (ImageView)findViewById(R.id.imgLocation);
         txtlocation = (TextView)findViewById(R.id.txtLocation);

@@ -8,6 +8,7 @@
     android:layout_width="match_parent">
 
 
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -22,7 +23,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="70dp"
         android:background="#C70039"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
@@ -38,6 +39,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/abc_vector_test"
                 android:onClick="btnBack"
                 map:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Chọn Nơi Giao Hàng"
                 android:textColor="#FFFFFF"

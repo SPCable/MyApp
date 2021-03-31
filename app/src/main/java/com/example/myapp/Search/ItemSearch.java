@@ -14,6 +14,7 @@ public class ItemSearch {
         this.image = image;
     }
 
+
     public String getName() {
         return name;
     }

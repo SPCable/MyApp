@@ -8,15 +8,18 @@
     tools:context=".Search.pro_search">
 
 
+
     <EditText
         android:id="@+id/editTimKiemSP"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="70dp"
         android:background="#C70039"
         android:drawableStart="@drawable/ic_baseline_search_244"
         android:hint="...Tìm kiếm sản phẩm"
         android:inputType="textPersonName"
-        android:padding="16dp"
+        android:layoutDirection="inherit"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textColorHint="#D0FFFFFF"

@@ -60,6 +60,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
+    //Biometric
+    implementation "androidx.biometric:biometric:1.0.1"
 
     //animation
     implementation 'com.github.mohammadatif:Animatoo:master'

@@ -44,6 +44,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
 
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ItemSearchViewHolder holder, int position) {
         ItemSearch itemSearch = itemSearchList.get(position);

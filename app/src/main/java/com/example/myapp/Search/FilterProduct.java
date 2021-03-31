@@ -15,6 +15,7 @@ public class FilterProduct extends Filter {
         this.filterList = filterList;
     }
 
+
     @Override
     protected FilterResults performFiltering(CharSequence charSequence) {
 

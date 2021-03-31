@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 
@@ -40,8 +41,11 @@ public class pro_search extends AppCompatActivity implements ItemSearchAdapter.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pro_search);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         editText = findViewById(R.id.editTimKiemSP);
         rv_search = findViewById(R.id.rvSearch);
+
 
 
         LoadSearch();

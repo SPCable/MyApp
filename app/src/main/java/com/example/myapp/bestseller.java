@@ -11,6 +11,7 @@ public class bestseller {
         Price = price;
     }
 
+
     public String getName() {
         return Name;
     }

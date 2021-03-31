@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/logo"
@@ -169,6 +169,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,15 +185,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-<!--    <fragment-->
-<!--        android:id="@+id/fragment"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:defaultNavHost="true"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/btnOrder_main"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/btnOrder_main"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/btnOrder_main"-->
-<!--        app:navGraph="@navigation/app_nav" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/fragment"-->
+    <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:defaultNavHost="true"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/btnOrder_main"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/btnOrder_main"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/btnOrder_main"-->
+    <!--        app:navGraph="@navigation/app_nav" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

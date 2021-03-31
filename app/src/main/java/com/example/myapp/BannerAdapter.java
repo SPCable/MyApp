@@ -22,6 +22,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
         this.bannerList = bannerList;
     }
 
+
     @NonNull
     @Override
     public BannerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

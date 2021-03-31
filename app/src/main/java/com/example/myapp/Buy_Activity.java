@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,11 +31,14 @@ public class Buy_Activity extends AppCompatActivity {
     Integer tongtien = 0;
     private Context context;
 
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         name = findViewById(R.id.txtListInfoProduct);
         price = findViewById(R.id.priceItem);
         imageView = findViewById(R.id.imageView2);

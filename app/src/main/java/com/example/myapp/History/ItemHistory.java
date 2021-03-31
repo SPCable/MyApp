@@ -17,6 +17,7 @@ public class ItemHistory {
         this.soluong = soluong;
     }
 
+
     public DateFormat getNgay() {
         return ngay;
     }

@@ -27,6 +27,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.SaleViewHoler>
         this.mOnSaleListener = onSaleListener;
     }
 
+
     @NonNull
     @Override
     public SaleViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

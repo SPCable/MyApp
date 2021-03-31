@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.myapp.History.BuyHistory;
@@ -20,6 +21,7 @@ public class TaiKhoan extends AppCompatActivity {
 
     public static final int RESULT_CODE = 1014;
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onStart() {
@@ -38,7 +40,7 @@ public class TaiKhoan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tai_khoan);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         txtlogin = (TextView) findViewById(R.id.txtLogin);
 
 //        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);

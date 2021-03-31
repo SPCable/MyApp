@@ -37,6 +37,7 @@ public class ListProAdapter extends RecyclerView.Adapter<ListProAdapter.ListProd
 
         View view = LayoutInflater.from(context).inflate(R.layout.list_product_item, parent, false);
 
+
         return new ListProductViewHolder(view, onItemListener);
     }
 

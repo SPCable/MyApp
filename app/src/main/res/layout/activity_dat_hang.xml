@@ -8,10 +8,11 @@
     android:background="#F1F1F1"
     tools:context=".Order.DatHang">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="70dp"
         android:background="#C70039"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,6 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@drawable/abc_vector_test"
                 android:onClick="btnBack"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -41,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Giỏ Hàng"
                 android:textColor="#FFFFFF"
@@ -160,6 +161,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:hint="... Nhập số điện thoại"
                     android:inputType="phone"
+                    android:maxLength="10"
                     android:textColorHint="#4D000000"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"

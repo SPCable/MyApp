@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     SaleAdapter saleAdapter;
     BSAdapter bsAdapter;
 
+
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading...");
